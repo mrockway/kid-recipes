@@ -3,9 +3,9 @@
 <div class="content" ng-hide="editForm">
 	<div class="columns">
 		<div class="column is-text-centered">
+			<h1 class="is-text-centered">{{foundRecipe.name}} <button class="button" ng-click="editForm = !editForm"><i class="fa fa-pencil"></i></button></h1>
+			
 			<p class="is-pulled-right" ng-repeat="type in foundRecipe.mealType">[ {{type}} ]</p>
-			<h1 class="is-text-centered">{{foundRecipe.name}}</h1>
-			<button class="button" ng-click="editForm = !editForm">Edit <i class="fa fa-pencil"></i></button class="button">
 		</div>
 	</div>
 	<h2 class="subtitle">Ingredients</h2>
