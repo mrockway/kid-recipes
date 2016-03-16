@@ -1,0 +1,36 @@
+<div class="columns">
+	<div class="column is-text-centered">
+		<h1 class="title">Recipes page</h1>
+	</div>
+</div>
+<div class="columns">
+	<div class="column">
+		<button class="is-fullwidth button" ng-click="filterMealType()">See All</button>
+	</div>
+</div>
+<div class="columns mealType is-text-centered is-mobile">
+	<div class="column">
+		<button class="is-fullwidth button breakfastType" ng-click="filterMealType('breakfast')">Breakfast</button>
+		<button class="is-fullwidth button lunchType" ng-click="filterMealType('lunch')">Lunch</button>
+	</div>
+	<div class="column">
+		<button class="is-fullwidth button snackType" ng-click="filterMealType('snack')">Snack</button>
+		<button class="is-fullwidth button dinnerType" ng-click="filterMealType('dinner')">Dinner</button>
+	</div>
+</div>
+<br>
+<div class="showRecipies">
+	<h1 class="is-text-centered title">{{ mealType | uppercase }}</h1>
+	<p class="is-fullwidth"><input type="text" ng-model="keyword" placeholder="Search"></p>
+	<div class="recipes" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
+		<a href="/recipes/{{recipe._id}}">
+			<div class="recipe-link is-text-centered">
+				<button class="button">
+					<h2 class="is-text-centered">{{recipe.name}}</h2>
+				</button>
+			</div>
+		</a>
+		<hr>
+	</div>
+</div>
+</div>

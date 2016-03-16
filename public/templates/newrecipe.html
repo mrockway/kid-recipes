@@ -1,0 +1,29 @@
+<button class="button"><a href="/">All Recipes</a></button>
+<h1>Add a Recipe Here</h1>
+<div class="new-form">
+	<form ng-submit="addRecipe()">
+		<p class="control">Select meals this recipe is for: 
+  		<label class="checkbox"><input ng-model="recipe.mealType.breakfast" type="checkbox">Breakfast</label>
+  		<label class="checkbox"><input ng-model="recipe.mealType.lunch" type="checkbox">Lunch</label>
+  		<label class="checkbox"><input ng-model="recipe.mealType.snack" type="checkbox">Snack</label>
+  		<label class="checkbox"><input ng-model="recipe.mealType.dinner" type="checkbox">Dinner</label>
+		</p>
+		<p class="control">
+			<label for="name">Recipe name</label>
+			<input class="input" type="text" id="name" placeholder="Enter name here" ng-model="recipe.name">
+		</p>
+		<p class="control">
+			<label for="ingredients">Enter Ingredients</label>
+			<div id="ingredients" ng-repeat="ingredient in recipe.ingredients">
+				<input class="input" type="text" ng-model="recipe.ingredients[$index].name" placeholder="Enter ingredient">
+				<input class="input" type="text" ng-model="recipe.ingredients[$index].quantity" placeholder="Enter quantity">
+			</div>
+			<input type="button" class="button" value="Add more ingredients" ng-click="addMoreIngredients()">
+		</p>
+		<p class="control">
+			<label for="comment">Recipe Comments</label>
+			<input type="text" id="comment" ng-model="recipe.comment" placeholder="Special instructions">
+		</p>
+		<input class="button is-fullwidth" type="submit" value="ADD">
+	</form>
+</div>

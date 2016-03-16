@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="kidsFood">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<base href="/">
+		<title>BearFood</title>
+		<!-- angular -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<!-- ngRoute -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+		<!-- ngResource -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+		<!-- custom js -->
+		<script src="scripts/app.js"></script>
+		<!-- bulma css -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.15/css/bulma.min.css">
+		<!-- font awesome -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<!-- custom css -->
+		<link type="text/css" rel="stylesheet" href="styles/main.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="columns">
+				<div class="column">
+					<h1 class="title is-text-centered">Bear & Elliephant Meals</h1>
+					<h1 class="title is-fullwidth is-text-centered">What should we eat today?</h1>
+					<a href="/newrecipe" class="button is-fullwidth is-text-centered"><h2>Add a recipe</h2></a>
+				</div>
+			</div>
+			<hr>
+			<div ng-view></div>
+		</div>
+	</body>
+</html>

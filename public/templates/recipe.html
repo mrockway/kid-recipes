@@ -1,0 +1,45 @@
+<button class="button"><a href="/">All Recipes</a></button>
+<br>
+<div class="content" ng-hide="editForm">
+	<div class="columns">
+		<div class="column is-text-centered">
+			<p class="is-pulled-right" ng-repeat="type in foundRecipe.mealType">[ {{type}} ]</p>
+			<h1 class="is-text-centered">{{foundRecipe.name}}</h1>
+			<button class="button" ng-click="editForm = !editForm">Edit <i class="fa fa-pencil"></i></button class="button">
+		</div>
+	</div>
+	<h2 class="subtitle">Ingredients</h2>
+	<div class="ingredients" ng-repeat="ingredients in foundRecipe.ingredients">
+		<p>{{ingredients.name}}: {{ingredients.quantity}}</p>
+	</div>
+	<p ng-if="foundRecipe.comment !== ''">Special Instructions: {{foundRecipe.comment}}</p>
+</div>
+<hr>
+<button class="button" ng-hide="editForm" ng-click="removeRecipe()">Remove Recipe</button>
+<div class="edit-form" ng-show="editForm">
+	<form ng-submit="updateRecipe()">
+		<p class="control">Edit meals this recipe is for:
+			<label class="checkbox"><input ng-model="updateRecipe.mealType.breakfast" type="checkbox">Breakfast</label>
+			<label class="checkbox"><input ng-model="updateRecipe.mealType.lunch" type="checkbox">Lunch</label>
+			<label class="checkbox"><input ng-model="updateRecipe.mealType.snack" type="checkbox">Snack</label>
+			<label class="checkbox"><input ng-model="updateRecipe.mealType.dinner" type="checkbox">Dinner</label>
+		</p>
+		<p class="control">
+			<label for="name">Recipe name</label>
+			<input class="input" type="text" id="name" placeholder="Enter name here" ng-model="foundRecipe.name">
+		</p>
+		<p class="control">
+			<label for="ingredients">Enter Ingredients</label>
+			<div id="ingredients" ng-repeat="ingredient in foundRecipe.ingredients">
+				<input class="input" type="text" ng-model="foundRecipe.ingredients[$index].name">
+				<input class="input" type="text" ng-model="foundRecipe.ingredients[$index].quantity">
+			</div>
+			<input type="button" class="button" value="Add more ingredients" ng-click="addMoreIngredients()">
+		</p>
+		<p class="control">
+			<label for="comment">Recipe Comments</label>
+			<input class="input" type="text" id="comment" ng-model="foundRecipe.comment" placeholder="Special instructions">
+		</p>
+		<input class="button is-fullwidth" type="submit" value="Update" ng-click="editForm = !editForm">
+	</form>
+</div>
