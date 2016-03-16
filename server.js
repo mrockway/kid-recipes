@@ -20,7 +20,11 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/kids_recipes');
+mongoose.connect(
+	process.env.MONGOLAB_URI ||
+	process.env.MONGOHQ_URL ||
+	'mongodb://localhost/kids_recipes'
+);
 
 // require Recipe model
 var Recipe = require('./models/recipe');
@@ -80,6 +84,6 @@ app.get('*', function(req,res) {
 });
 
 // listen on port 3000
-app.listen(5000, function() {
+app.listen(process.env.PORT || 5000, function() {
 	console.log('server running');
 });
