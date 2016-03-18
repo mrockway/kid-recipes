@@ -17,6 +17,7 @@
 <hr>
 <button class="button" ng-hide="editForm" ng-click="removeRecipe()">Remove Recipe</button>
 <div class="edit-form" ng-show="editForm">
+<button class="is-pulled-right button" ng-show="editForm" ng-click="editForm = !editForm">Cancel</button>
 	<form ng-submit="updateRecipe()">
 		<p class="control">Edit meals this recipe is for:
 			<label class="checkbox"><input ng-model="updateRecipe.mealType.breakfast" type="checkbox">Breakfast</label>

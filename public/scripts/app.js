@@ -72,7 +72,9 @@ app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scop
 		for (var meal in $scope.updateRecipe.mealType) {
 			meals.push(meal);
 		}
-		alterRecipe.mealType = meals;
+		if (meals.length > 0) {
+			alterRecipe.mealType = meals;
+		}
 
 		Recipe.update(alterRecipe);	
 	};

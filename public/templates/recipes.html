@@ -5,7 +5,7 @@
 </div>
 <div class="columns">
 	<div class="column">
-		<button class="is-fullwidth button" ng-click="filterMealType()">See All</button>
+		<button class="is-fullwidth button" ng-click="filterMealType()">See All Recipes</button>
 	</div>
 </div>
 <div class="columns mealType is-text-centered is-mobile">
@@ -19,18 +19,11 @@
 	</div>
 </div>
 <br>
-<div class="showRecipies">
-	<h1 class="is-text-centered title">{{ mealType | uppercase }}</h1>
-	<p class="is-fullwidth"><input type="text" ng-model="keyword" placeholder="Search"></p>
-	<div class="recipes" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
-		<a href="/recipes/{{recipe._id}}">
-			<div class="recipe-link is-text-centered">
-				<button class="button">
-					<h2 class="is-text-centered">{{recipe.name}}</h2>
-				</button>
-			</div>
-		</a>
-		<hr>
+<nav class="menu">
+	<p class="capitalize menu-heading">{{ mealType }} Recipes 
+		<input class="is-pulled-right" type="text" ng-model="keyword" placeholder="Search recipes">
+	</p>
+	<div class="menu-block recipe-list" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
+		<a href="/recipes/{{recipe._id}}" class="menu-block capitalize">{{recipe.name}}</a>
 	</div>
-</div>
-</div>
+</nav>

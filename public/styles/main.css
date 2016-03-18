@@ -1,7 +1,27 @@
+html {
+	background-color: #F0F0F0;
+}
 body {
-	background-color: #9397bf;
+	color: #000000;
+	font-family: 'Acme', sans-serif;
 }
 
 a {
 	color: #000000;
+}
+
+.button {
+	background-color: #64C733;
+}
+
+.capitalize::first-letter {
+	text-transform: uppercase;
+}
+
+.recipe-list {
+	background-color: #3E879E;
+}
+
+.add-recipe {
+	margin-top: 5%;
 }

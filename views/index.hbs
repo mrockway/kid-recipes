@@ -19,6 +19,8 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<!-- custom css -->
 		<link type="text/css" rel="stylesheet" href="styles/main.css">
+		<!-- font -->
+		<link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<div class="container">
@@ -26,11 +28,13 @@
 				<div class="column">
 					<h1 class="title is-text-centered">Bear & Elliephant Meals</h1>
 					<h1 class="title is-fullwidth is-text-centered">What should we eat today?</h1>
-					<a href="/newrecipe" class="button is-fullwidth is-text-centered"><h2>Add a recipe</h2></a>
 				</div>
 			</div>
 			<hr>
 			<div ng-view></div>
+			<div class="add-recipe">
+				<a href="/newrecipe" class="button is-fullwidth is-text-centered"><h2>Add a recipe</h2></a>
+			</div>
 		</div>
 	</body>
 </html>
