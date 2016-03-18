@@ -1,9 +1,13 @@
 html {
-	background-color: #F0F0F0;
+	background-color: #BCDC94;
 }
 body {
 	color: #000000;
 	font-family: 'Acme', sans-serif;
+}
+
+hr {
+	border-top-color: #000000;
 }
 
 a {
@@ -11,15 +15,15 @@ a {
 }
 
 .button {
-	background-color: #64C733;
+	border-width: 0;
+}
+
+.back-button {
+	padding-top: 0;
 }
 
 .capitalize::first-letter {
 	text-transform: uppercase;
-}
-
-.recipe-list {
-	background-color: #3E879E;
 }
 
 .add-recipe {

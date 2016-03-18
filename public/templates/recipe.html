@@ -1,10 +1,12 @@
-<button class="button"><a href="/">All Recipes</a></button>
-<br>
-<div class="content" ng-hide="editForm">
+<div class="content individual-recipe" ng-hide="editForm">
+	<div class="columns">
+		<div class="column back-button">
+			<button class="button"><a href="/">All Recipes</a></button>
+		</div>
+	</div>
 	<div class="columns">
 		<div class="column is-text-centered">
 			<h1 class="is-text-centered">{{foundRecipe.name}} <button class="button" ng-click="editForm = !editForm"><i class="fa fa-pencil"></i></button></h1>
-			
 			<p class="is-pulled-right" ng-repeat="type in foundRecipe.mealType">[ {{type}} ]</p>
 		</div>
 	</div>
@@ -17,7 +19,7 @@
 <hr>
 <button class="button" ng-hide="editForm" ng-click="removeRecipe()">Remove Recipe</button>
 <div class="edit-form" ng-show="editForm">
-<button class="is-pulled-right button" ng-show="editForm" ng-click="editForm = !editForm">Cancel</button>
+	<button class="is-pulled-right button" ng-show="editForm" ng-click="editForm = !editForm">Cancel</button>
 	<form ng-submit="updateRecipe()">
 		<p class="control">Edit meals this recipe is for:
 			<label class="checkbox"><input ng-model="updateRecipe.mealType.breakfast" type="checkbox">Breakfast</label>
