@@ -22,19 +22,29 @@
 		<!-- font -->
 		<link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet' type='text/css'>
 	</head>
-	<body>
-		<div class="container">
-			<div class="columns">
-				<div class="column">
-					<h1 class="title is-text-centered">Bear & Elliephant Meals</h1>
-					<h1 class="title is-fullwidth is-text-centered">What should we eat today?</h1>
-				</div>
-			</div>
-			<hr>
-			<div ng-view></div>
-			<div class="add-recipe">
-				<a href="/newrecipe" class="button is-fullwidth is-text-centered"><h2>Add a recipe</h2></a>
+	<!-- Main container -->
+	<nav class="navbar">
+		<div class="navbar-item">
+			<p>Bear & Elliephant Meals</p>
+		</div>
+		<div class="navbar-item">
+			<p class="is-pulled-right"><a class="button">Login</a></p>
+			<p class="is-pulled-right"><a class="button">Sign-up</a></p>
+		</div>
+	</div>
+</nav>
+<body>
+	<div class="container">
+		<div class="columns">
+			<div class="column">
+				<h1 class="title is-fullwidth is-text-centered">What should we eat today?</h1>
 			</div>
 		</div>
-	</body>
+		<hr>
+		<div ng-view></div>
+		<div class="add-recipe">
+			<a href="/newrecipe" class="button is-fullwidth is-text-centered"><h2>Add a recipe</h2></a>
+		</div>
+	</div>
+</body>
 </html>

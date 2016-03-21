@@ -1,11 +1,11 @@
 <button class="button is-pulled-right"><a href="/">back to recipes</a></button>
 <div class="new-form">
 	<form ng-submit="addRecipe()">
-		<p class="control">Meals this recipe is for:
-			<label class="checkbox"><input ng-model="recipe.mealType.breakfast" type="checkbox">Breakfast</label>
-			<label class="checkbox"><input ng-model="recipe.mealType.lunch" type="checkbox">Lunch</label>
-			<label class="checkbox"><input ng-model="recipe.mealType.snack" type="checkbox">Snack</label>
-			<label class="checkbox"><input ng-model="recipe.mealType.dinner" type="checkbox">Dinner</label>
+		<p class="control">Meals:
+			<label class="checkbox"><input class="meal-checkbox" ng-model="recipe.mealType.breakfast" type="checkbox">Breakfast</label>
+			<label class="checkbox"><input class="meal-checkbox" ng-model="recipe.mealType.lunch" type="checkbox">Lunch</label>
+			<label class="checkbox"><input class="meal-checkbox" ng-model="recipe.mealType.snack" type="checkbox">Snack</label>
+			<label class="checkbox"><input class="meal-checkbox" ng-model="recipe.mealType.dinner" type="checkbox">Dinner</label>
 		</p>
 		<p class="control">
 			<label for="name">Recipe name</label>

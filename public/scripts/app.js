@@ -48,12 +48,11 @@ app.factory('Recipe', ['$resource', function($resource) {
 app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 
 	$scope.recipes = Recipe.query(function() {
-		console.log('response',$scope.recipes);
+		
 	});
 
-	$scope.filterMealType = function(meal) {
-		$scope.mealType = meal;
-		return $scope.mealType;
+	$scope.searchMeals = function(recipes) {
+		return $scope.recipes() 
 	};
 
 }]);

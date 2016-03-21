@@ -1,29 +1,29 @@
 <div class="columns">
 	<div class="column is-text-centered">
-		<h1 class="title">Recipes page</h1>
+		<h1 class="title">Recipes</h1>
 	</div>
 </div>
 <div class="columns">
 	<div class="column">
-		<button class="is-fullwidth button" ng-click="filterMealType()">See All Recipes</button>
+		<button class="is-fullwidth button" ng-click= "mealType = '' ">See All Recipes</button>
 	</div>
 </div>
 <div class="columns mealType is-text-centered is-mobile">
 	<div class="column">
-		<button class="is-fullwidth button breakfastType" ng-click="filterMealType('breakfast')">Breakfast</button>
-		<button class="is-fullwidth button lunchType" ng-click="filterMealType('lunch')">Lunch</button>
+		<button class="is-fullwidth button breakfastType" ng-click= "mealType = 'breakfast'">Breakfast</button>
+		<button class="is-fullwidth button lunchType" ng-click= "mealType = 'lunch'">Lunch</button>
 	</div>
 	<div class="column">
-		<button class="is-fullwidth button snackType" ng-click="filterMealType('snack')">Snack</button>
-		<button class="is-fullwidth button dinnerType" ng-click="filterMealType('dinner')">Dinner</button>
+		<button class="is-fullwidth button snackType" ng-click= "mealType = 'snack'">Snack</button>
+		<button class="is-fullwidth button dinnerType" ng-click= "mealType = 'dinner'">Dinner</button>
 	</div>
 </div>
 <br>
-<nav class="menu">
+<div class="menu">
 	<p class="capitalize menu-heading">{{ mealType }} Recipes 
 		<input class="is-pulled-right" type="text" ng-model="keyword" placeholder="Search recipes">
 	</p>
 	<div class="menu-block recipe-list" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
 		<a href="/recipes/{{recipe._id}}" class="menu-block capitalize">{{recipe.name}}</a>
 	</div>
-</nav>
+</div>

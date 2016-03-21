@@ -1,9 +1,11 @@
-html {
-	background-color: #BCDC94;
-}
 body {
 	color: #000000;
 	font-family: 'Acme', sans-serif;
+}
+
+nav {
+	background-color: #6287f9;
+	padding-left: 10px;
 }
 
 hr {
@@ -15,7 +17,7 @@ a {
 }
 
 .button {
-	border-width: 0;
+	margin-bottom: 2%;
 }
 
 .back-button {
@@ -24,6 +26,10 @@ a {
 
 .capitalize::first-letter {
 	text-transform: uppercase;
+}
+
+.menu {
+	background-color: #A6537A;
 }
 
 .add-recipe {
