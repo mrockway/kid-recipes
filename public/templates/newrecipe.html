@@ -1,30 +1,33 @@
-<button class="button is-pulled-right"><a href="/">back to recipes</a></button>
-<div class="new-form">
-	<form ng-submit="addRecipe()">
-		<p class="control">Meals:
-			<label class="checkbox"><input class="meal-checkbox" ng-model="recipe.mealType.breakfast" type="checkbox">Breakfast</label>
-			<label class="checkbox"><input class="meal-checkbox" ng-model="recipe.mealType.lunch" type="checkbox">Lunch</label>
-			<label class="checkbox"><input class="meal-checkbox" ng-model="recipe.mealType.snack" type="checkbox">Snack</label>
-			<label class="checkbox"><input class="meal-checkbox" ng-model="recipe.mealType.dinner" type="checkbox">Dinner</label>
-		</p>
-		<p class="control">
-			<label for="name">Recipe name</label>
-			<input class="input" type="text" id="name" placeholder="Recipe Name" ng-model="recipe.name">
-		</p>
-		<p class="control">
-			<label for="ingredients">Enter Ingredients</label>
-			<div class="columns" ng-repeat="ingredient in recipe.ingredients">
-				<div class="column">
-					<input class="input" id="ingredients" type="text" ng-model="recipe.ingredients[$index].name" placeholder="Enter ingredient name">
-				</div>
+<div class="row">
+	<div class="col-md-12">
+		<a class="btn btn-default pull-right" href="/">back to recipes</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<form ng-submit="addRecipe()">
+			<div class="checkbox"><strong>Meals:</strong>
+				<label><input ng-model="recipe.mealType.breakfast" type="checkbox">Breakfast</label>
+				<label><input ng-model="recipe.mealType.lunch" type="checkbox">Lunch</label>
+				<label><input ng-model="recipe.mealType.snack" type="checkbox">Snack</label>
+				<label><input ng-model="recipe.mealType.dinner" type="checkbox">Dinner</label>
 			</div>
-			<input type="button" class="button" value="Add more ingredients" ng-click="addMoreIngredients()">
-		</p>
-		<br>
-		<p class="control">
-			<label for="comment">Recipe Comments</label>
-			<input class="input" type="text" id="comment" ng-model="recipe.comment" placeholder="Special instructions">
-		</p>
-		<input class="button is-fullwidth" type="submit" value="ADD">
-	</form>
+			<div class="form-group">
+				<label for="name">Recipe name</label>
+				<input class="form-control" type="text" id="name" placeholder="Recipe Name" ng-model="recipe.name">
+			</div>
+			<div class="form-group">
+				<label for="ingredients">Enter Ingredients</label>
+				<div ng-repeat="ingredient in recipe.ingredients">
+					<input class="form-control" id="ingredients" type="text" ng-model="recipe.ingredients[$index].name" placeholder="Enter ingredient name">
+				</div>
+				<button class="btn btn-default" ng-click="addMoreIngredients()">Add more ingredients</button>
+			</div>
+			<div class="form-group">
+				<label for="comment">Recipe Comments</label>
+				<input class="form-control" type="text" id="comment" ng-model="recipe.comment" placeholder="Special instructions">
+			</div>
+			<input class="btn" type="submit" value="ADD">
+		</form>
+	</div>
 </div>

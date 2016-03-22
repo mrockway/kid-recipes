@@ -46,6 +46,7 @@ app.factory('Recipe', ['$resource', function($resource) {
 /////////////////
 
 app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
+	
 
 	$scope.recipes = Recipe.query(function() {
 
@@ -54,6 +55,8 @@ app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 }]);
 
 app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scope, $routeParams, Recipe) {
+	
+
 	var recipeId = $routeParams.recipeId;
 
 	$scope.foundRecipe = Recipe.get({ id: recipeId });
@@ -89,6 +92,7 @@ app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scop
 }]);
 
 app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
+
 
 	function blankRecipe() {
 		$scope.recipe = {
