@@ -5,23 +5,23 @@
 		</div>
 	</div>
 	<div class="columns">
-		<div class="column is-text-centered">
+		<div class="column">
 			<h1 class="is-text-centered">{{foundRecipe.name}}</h1>
+			<h2>Ingredients</h2>
+			<div class="ingredients" ng-repeat="ingredients in foundRecipe.ingredients">
+				<p>{{ingredients.name}}</p>
+			</div>
+			<p ng-if="foundRecipe.comment !== ''">Special Instructions: {{foundRecipe.comment}}</p>
 		</div>
 	</div>
-	<h2 class="subtitle">Ingredients</h2>
-	<div class="ingredients" ng-repeat="ingredients in foundRecipe.ingredients">
-		<p>{{ingredients.name}}: {{ingredients.quantity}}</p>
-	</div>
-	<p ng-if="foundRecipe.comment !== ''">Special Instructions: {{foundRecipe.comment}}</p>
 </div>
-<hr>
 <button class="button" ng-click="editForm = !editForm"><i class="fa fa-pencil"></i></button>
 <button class="button" ng-hide="editForm" ng-click="removeRecipe()"><i class="fa fa-trash"></i></button>
+<hr>
 <div class="edit-form" ng-show="editForm">
 	<button class="is-pulled-right button" ng-show="editForm" ng-click="editForm = !editForm">Cancel</button>
 	<form ng-submit="updateRecipe()">
-		<p class="control">Edit meals this recipe is for:
+		<p class="control">Change meals:
 			<label class="checkbox"><input ng-model="updateRecipe.mealType.breakfast" type="checkbox">Breakfast</label>
 			<label class="checkbox"><input ng-model="updateRecipe.mealType.lunch" type="checkbox">Lunch</label>
 			<label class="checkbox"><input ng-model="updateRecipe.mealType.snack" type="checkbox">Snack</label>
@@ -29,13 +29,12 @@
 		</p>
 		<p class="control">
 			<label for="name">Recipe name</label>
-			<input class="input" type="text" id="name" placeholder="Enter name here" ng-model="foundRecipe.name">
+			<input class="input" type="text" id="name" placeholder="Name" ng-model="foundRecipe.name">
 		</p>
 		<p class="control">
 			<label for="ingredients">Enter Ingredients</label>
 			<div id="ingredients" ng-repeat="ingredient in foundRecipe.ingredients">
-				<input class="input" type="text" ng-model="foundRecipe.ingredients[$index].name">
-				<input class="input" type="text" ng-model="foundRecipe.ingredients[$index].quantity">
+				<input class="input" type="text" ng-model="foundRecipe.ingredients[$index].name" placeholder="Ingredient name">
 			</div>
 			<input type="button" class="button" value="Add more ingredients" ng-click="addMoreIngredients()">
 		</p>

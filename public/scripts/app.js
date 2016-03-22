@@ -48,20 +48,15 @@ app.factory('Recipe', ['$resource', function($resource) {
 app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 
 	$scope.recipes = Recipe.query(function() {
-		
-	});
 
-	$scope.searchMeals = function(recipes) {
-		return $scope.recipes() 
-	};
+	});
 
 }]);
 
 app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scope, $routeParams, Recipe) {
 	var recipeId = $routeParams.recipeId;
-	$scope.foundRecipe = Recipe.get({ id: recipeId });
 
-	console.log('found recipe',$scope.foundRecipe);
+	$scope.foundRecipe = Recipe.get({ id: recipeId });
 
 	$scope.updateRecipe = function() {
 
@@ -95,37 +90,63 @@ app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scop
 
 app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 
-	$scope.recipe = {
-		active: true,
-		name: '',
-		mealType: {},
-		ingredients: [{
+	function blankRecipe() {
+		$scope.recipe = {
+			active: true,
 			name: '',
-			quantity: ''
-		}],
-		comment: ''
-	};
+			mealType: {},
+			ingredients: [{ name: '' }],
+			comment: ''
+		};
+
+		[1,2,3].forEach(function(i) {
+			$scope.recipe.ingredients.push({name: ''});	
+		});
+	}
+
+	blankRecipe();
+	
 
 	$scope.addMoreIngredients = function() {
 		$scope.recipe.ingredients.push({
-			name: '',
-			quantity: ''
+			name: ''
 		});
 	};
 
 	$scope.addRecipe = function() {
 		var newRecipe = $scope.recipe;
 		var meals = [];
+		var ingredients = [];
 		for (var meal in newRecipe.mealType) {
 			meals.push(meal);
 		}
 		newRecipe.mealType = meals;
-		console.log(newRecipe);
-		Recipe.save(newRecipe, function(data) {
-			console.log("Recipe saved");
-		}, function(error) {
-			console.log('error', error);
-		});
+
+		for (var i = 0; i < newRecipe.ingredients.length; i++) {
+			console.log(newRecipe.ingredients[i].name);
+			if (newRecipe.ingredients[i].name !== '') {
+				console.log('i',i);
+				ingredients.push({name: newRecipe.ingredients[i].name});
+			}
+		}
+
+		newRecipe.ingredients = ingredients;
+
+		console.log('newRecipe',newRecipe);
+		Recipe.save(newRecipe);
+
+		blankRecipe();
+		// $scope.recipe = {
+		// 	active: true,
+		// 	name: '',
+		// 	mealType: {},
+		// 	ingredients: [{ name: '' }],
+		// 	comment: ''
+		// };
+
+		// [1,2,3].forEach(function(i) {
+		// 	$scope.recipe.ingredients.push({name: ''});	
+		// });
 
 	};
 

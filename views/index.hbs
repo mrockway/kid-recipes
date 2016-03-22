@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<base href="/">
-		<title>BearFood</title>
+		<title>KidFood</title>
 		<!-- angular -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<!-- ngRoute -->
@@ -13,38 +13,24 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
 		<!-- custom js -->
 		<script src="scripts/app.js"></script>
-		<!-- bulma css -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.15/css/bulma.min.css">
 		<!-- font awesome -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<!-- custom css -->
 		<link type="text/css" rel="stylesheet" href="styles/main.css">
-		<!-- font -->
-		<link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet' type='text/css'>
 	</head>
 	<!-- Main container -->
-	<nav class="navbar">
-		<div class="navbar-item">
-			<p>Bear & Elliephant Meals</p>
-		</div>
-		<div class="navbar-item">
-			<p class="is-pulled-right"><a class="button">Login</a></p>
-			<p class="is-pulled-right"><a class="button">Sign-up</a></p>
-		</div>
-	</div>
-</nav>
-<body>
-	<div class="container">
-		<div class="columns">
-			<div class="column">
-				<h1 class="title is-fullwidth is-text-centered">What should we eat today?</h1>
+	<body>
+		<div class="container">
+			<div class="columns">
+				<div class="column">
+					<h1 class="title is-fullwidth is-text-centered">What should we eat today?</h1>
+				</div>
+			</div>
+			<hr>
+			<div ng-view></div>
+			<div class="add-recipe">
+				<a href="/newrecipe" class="button is-fullwidth is-text-centered"><h2>Add a recipe</h2></a>
 			</div>
 		</div>
-		<hr>
-		<div ng-view></div>
-		<div class="add-recipe">
-			<a href="/newrecipe" class="button is-fullwidth is-text-centered"><h2>Add a recipe</h2></a>
-		</div>
-	</div>
-</body>
+	</body>
 </html>
