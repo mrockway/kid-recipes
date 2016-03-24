@@ -19,7 +19,7 @@
 			<div class="form-group">
 				<label for="ingredients">Enter Ingredients</label>
 				<div ng-repeat="ingredient in recipe.ingredients">
-					<input class="form-control" id="ingredients" type="text" ng-model="recipe.ingredients[$index].name" placeholder="Enter ingredient name">
+					<input class="form-control" id="ingredients" type="text" ng-model="recipe.ingredients[$index].name">
 				</div>
 				<button class="btn btn-default" ng-click="addMoreIngredients()">Add more ingredients</button>
 			</div>
