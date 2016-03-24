@@ -6,6 +6,34 @@ body {
 	background-color: #A6537A;
 	color: #FFFFFF;
 }
+.btn:hover {
+	background-color: #D977AD;
+	color: #FFFFFF;
+}
+
+.btn:active {
+	background-color: #D977AD;
+	color: #FFFFFF;
+}
+.btn:focus {
+	background-color: #D977AD;
+	color: #FFFFFF;
+}
+.meal-btn {
+	margin-bottom: 5%;;
+	width: 100%;
+}
+
+.panel-heading {
+	background-color: #A6537A !important;
+	color: #FFFFFF !important;
+	font-size: 2em;
+}
+
+.input-group-addon {
+	background-color: #A6537A;
+	color: #FFFFFF;
+}
 
 .capitalize {
 	text-transform: capitalize;
