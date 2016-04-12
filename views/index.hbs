@@ -24,14 +24,20 @@
 	</head>
 	<!-- Main container -->
 	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="text-center">What should we eat today?</h1>
-				</div>
+		<!-- begin navbar  -->
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar pull-right">
+					<a class="btn" href="/signup">Sign-in</a>
+					<a class="btn" href="/login">Login</a>
+				</nav>
 			</div>
-			<hr>
+		</div>
+		<!-- end navbar  -->
+		<div class="container-fluid">
 			<div ng-view></div>
 		</div>
+		<!-- bootstrap js -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</body>
 </html>

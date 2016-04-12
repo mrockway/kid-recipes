@@ -18,6 +18,14 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 			templateUrl: 'templates/recipe.html',
 			controller: 'RecipeCtrl'
 		})
+		.when('/signup', {
+			templateUrl: 'templates/signup.html',
+			controller: 'SignupCtrl'
+		})
+		.when('/login', {
+			templateUrl: 'templates/login.html',
+			controller: 'LoginCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
@@ -46,7 +54,6 @@ app.factory('Recipe', ['$resource', function($resource) {
 /////////////////
 
 app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
-	
 
 	$scope.recipes = Recipe.query(function() {
 
@@ -55,7 +62,7 @@ app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 }]);
 
 app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scope, $routeParams, Recipe) {
-	
+
 
 	var recipeId = $routeParams.recipeId;
 
@@ -92,7 +99,6 @@ app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scop
 }]);
 
 app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
-
 
 	function blankRecipe() {
 		$scope.recipe = {

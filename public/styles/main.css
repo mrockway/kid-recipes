@@ -30,6 +30,10 @@ body {
 	font-size: 2em;
 }
 
+.signup-form {
+	padding: 0;
+}
+
 .input-group-addon {
 	background-color: #A6537A;
 	color: #FFFFFF;
