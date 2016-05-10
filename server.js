@@ -7,8 +7,8 @@
 var express = require('express'),
 		app = express(),
 		bodyParser = require('body-parser'),
-		mongoose = require('mongoose');
-
+		mongoose = require('mongoose'),
+		auth = require('./resources/auth');
 // configure bodyParser to send and receive JSON form data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -26,9 +26,11 @@ mongoose.connect(
 	'mongodb://localhost/kids_recipes'
 );
 
-// require Recipe model
+// require Recipe & User models
 var Recipe = require('./models/recipe');
+var User = require('./models/user');
 
+// Query & return all active recipes from database
 app.get('/api/recipes', function (req,res) {
 
 	// Send back all active recipes from the database
@@ -67,7 +69,7 @@ app.put('/api/recipes/:id', function(req,res) {
 		if (err) {
 			res.status(500).json({error: err.message});
 		} else {
-			console.log("updated recipe");
+			console.log("updated recipe", updatedRecipe);
 			res.json(updatedRecipe);
 		}
 	});
@@ -76,6 +78,34 @@ app.put('/api/recipes/:id', function(req,res) {
 app.delete('/api/recipes/:id', function(req,res) {
 	// delete single recipe
 	// possibly alter the recipe status to avoid complete deletion
+});
+
+app.post('/auth/signup', function(req,res) {
+
+	User.findOne({email: req.body.email }, function(err, existingUser) {
+		if (existingUser) { 
+			return res.status(409).send({message: 'Email is already taken.'}); 
+		}
+	
+		console.log('req body',req.body);
+	
+		var newUser = new User({
+			email: req.body.email,
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			password: req.body.password
+		});
+
+
+	newUser.save(function(err,result) {
+		if (err) {
+			res.status(500).json({error: err.message});
+		} else {
+			res.send({ token: auth.createJWT(result) });
+		}
+
+	});
+});
 });
 
 // serve index page for all routes

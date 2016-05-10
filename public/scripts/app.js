@@ -1,4 +1,4 @@
-var app = angular.module("kidsFood", ['ngRoute', 'ngResource']);
+var app = angular.module("kidsFood", ['ngRoute', 'ngResource', 'satellizer']);
 
 ////////////
 // Routes //
@@ -20,11 +20,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 		})
 		.when('/signup', {
 			templateUrl: 'templates/signup.html',
-			controller: 'SignupCtrl'
+			controller: 'AuthCtrl'
 		})
 		.when('/login', {
 			templateUrl: 'templates/login.html',
-			controller: 'LoginCtrl'
+			controller: 'AuthCtrl'
 		})
 		.otherwise({
 			redirectTo: '/'
@@ -42,6 +42,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 // Factory //
 /////////////
 
+// Create recipe CRUD routes
 app.factory('Recipe', ['$resource', function($resource) {
 	return $resource('/api/recipes/:id', { id: '@_id' },
 	{
@@ -53,36 +54,47 @@ app.factory('Recipe', ['$resource', function($resource) {
 // Controllers //
 /////////////////
 
+// Controller for the 'Home Page'
 app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 
-	$scope.recipes = Recipe.query(function() {
+	// Get all active recipes from the database for all users
+	$scope.recipes = Recipe.query(function() {});
 
-	});
 
 }]);
 
+// Controller for individual recipe pages
 app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scope, $routeParams, Recipe) {
 
-
+	// Get recipe ID from the URL
 	var recipeId = $routeParams.recipeId;
 
+	// Query database for specific recipe
 	$scope.foundRecipe = Recipe.get({ id: recipeId });
 
+	// Edit recipe function
 	$scope.updateRecipe = function() {
 
+		// Variable holding the recipe sent from the form
 		var alterRecipe = $scope.foundRecipe;
+
+		// Empty array to hold the updated recipes meal types
 		var meals = [];
-		console.log('form submit', alterRecipe);
+		
+		// Loop to remove the true/false value from the checkboxes
 		for (var meal in $scope.updateRecipe.mealType) {
 			meals.push(meal);
 		}
+		// Conditional to determine if any changes where made
 		if (meals.length > 0) {
 			alterRecipe.mealType = meals;
 		}
 
+		// Update the existing recipe
 		Recipe.update(alterRecipe);	
 	};
 	
+	// Function to add 1 more ingredient to the form
 	$scope.addMoreIngredients = function() {
 		$scope.foundRecipe.ingredients.push({
 			name: '',
@@ -146,18 +158,35 @@ app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 		Recipe.save(newRecipe);
 
 		blankRecipe();
-		// $scope.recipe = {
-		// 	active: true,
-		// 	name: '',
-		// 	mealType: {},
-		// 	ingredients: [{ name: '' }],
-		// 	comment: ''
-		// };
-
-		// [1,2,3].forEach(function(i) {
-		// 	$scope.recipe.ingredients.push({name: ''});	
-		// });
-
+		
 	};
 
 }]);
+
+app.controller("AuthCtrl", ['$scope', '$location', '$auth', function($scope, $location, $auth) {
+		
+		$scope.signupForm = function() {
+			
+			$auth.signup($scope.newUser)
+				.then(function(response) {
+					
+					$auth.setToken(response.data.token);
+					console.log(response.data.token);
+					//$scope.isAuthenticated();	
+
+					$scope.newUser = {};
+
+					$location.path('/');
+				}, function(error) {
+					console.error(error);
+				});
+				
+		};
+
+		$scope.userLogin = function() {
+			var user = $scope.user;
+			console.log('user', user);
+		};
+
+}]);
+
