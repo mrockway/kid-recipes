@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-md-offset-2 col-md-8 col-sm-12">
+		<h1 class="page-header text-center">Sign-up</h1>
+		<form ng-submit="signup()">
+			<div class="form-group">
+				<label for="email"></label>
+				<div class="input-group">
+					<span class="input-group-addon">Email</span>
+					<input type="text" class="form-control" id="email" placeholder="example@email.com" ng-model="user.email">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="first-name"></label>
+				<div class="input-group">
+					<span class="input-group-addon">First name</span>
+					<input type="text" class="form-control" id="first-name" ng-model="user.firstName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="last-name"></label>
+				<div class="input-group">
+					<span class="input-group-addon">Last name</span>
+					<input type="text" class="form-control" id="last-name" ng-model="user.lastName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password"></label>
+				<div class="input-group">
+					<span class="input-group-addon">Password</span>
+					<input type="password" class="form-control" id="password" ng-model="user.password">
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn form-control" value="Sign-up">
+			</div>
+		</form>
+	</div>
+</div>

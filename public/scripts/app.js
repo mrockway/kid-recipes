@@ -1,4 +1,4 @@
-var app = angular.module("kidsFood", ['ngRoute', 'ngResource']);
+var app = angular.module("kidsFood", ['ngRoute', 'ngResource', 'satellizer']);
 
 ////////////
 // Routes //
@@ -18,6 +18,14 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 			templateUrl: 'templates/recipe.html',
 			controller: 'RecipeCtrl'
 		})
+		.when('/signup', {
+			templateUrl: 'templates/signup.html',
+			controller: 'AuthCtrl'
+		})
+		.when('/login', {
+			templateUrl: 'templates/login.html',
+			controller: 'AuthCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
@@ -34,6 +42,7 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 // Factory //
 /////////////
 
+// Create recipe CRUD routes
 app.factory('Recipe', ['$resource', function($resource) {
 	return $resource('/api/recipes/:id', { id: '@_id' },
 	{
@@ -45,37 +54,77 @@ app.factory('Recipe', ['$resource', function($resource) {
 // Controllers //
 /////////////////
 
-app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
+app.controller("MainCtrl", ['$scope', '$auth', '$http', '$location', function($scope, $auth, $http, $location){
 	
+	$scope.isAuthenticated = function() {
+		$http.get('/api/me').then(function(response){
+			if (response.data) {
+				console.log(response);
+				$scope.currentUser = response.data;
+			} else {
+				$auth.removeToken();
+			}
+			}, function (error) {
+				console.error(error);
+				$auth.removeToken();
+		});
+	};
 
-	$scope.recipes = Recipe.query(function() {
+	$scope.isAuthenticated();
+	
+	$scope.logout = function() {
+		
+		$auth.logout().then(function() {
+			// Set current user to null
+			$scope.currentUser = null;
+			// Redirect to login page
+			$location.path('/login');
 
-	});
+		});
+	};
+	// place in the body tag
+}]);
+
+// Controller for the 'Home Page'
+app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
+
+	// Get all active recipes from the database for all users
+	$scope.recipes = Recipe.query(function() {});
 
 }]);
 
+// Controller for individual recipe pages
 app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scope, $routeParams, Recipe) {
-	
 
+	// Get recipe ID from the URL
 	var recipeId = $routeParams.recipeId;
 
+	// Query database for specific recipe
 	$scope.foundRecipe = Recipe.get({ id: recipeId });
 
+	// Edit recipe function
 	$scope.updateRecipe = function() {
 
+		// Variable holding the recipe sent from the form
 		var alterRecipe = $scope.foundRecipe;
+
+		// Empty array to hold the updated recipes meal types
 		var meals = [];
-		console.log('form submit', alterRecipe);
+		
+		// Loop to remove the true/false value from the checkboxes
 		for (var meal in $scope.updateRecipe.mealType) {
 			meals.push(meal);
 		}
+		// Conditional to determine if any changes where made
 		if (meals.length > 0) {
 			alterRecipe.mealType = meals;
 		}
 
+		// Update the existing recipe
 		Recipe.update(alterRecipe);	
 	};
 	
+	// Function to add 1 more ingredient to the form
 	$scope.addMoreIngredients = function() {
 		$scope.foundRecipe.ingredients.push({
 			name: '',
@@ -92,7 +141,6 @@ app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scop
 }]);
 
 app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
-
 
 	function blankRecipe() {
 		$scope.recipe = {
@@ -140,18 +188,58 @@ app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 		Recipe.save(newRecipe);
 
 		blankRecipe();
-		// $scope.recipe = {
-		// 	active: true,
-		// 	name: '',
-		// 	mealType: {},
-		// 	ingredients: [{ name: '' }],
-		// 	comment: ''
-		// };
-
-		// [1,2,3].forEach(function(i) {
-		// 	$scope.recipe.ingredients.push({name: ''});	
-		// });
-
+		
 	};
+
+}]);
+
+app.controller("AuthCtrl", ['$scope', '$location', '$auth', function($scope, $location, $auth) {
+		
+		$scope.signup = function() {
+			
+			$auth.signup($scope.user)
+				.then(function(response) {
+
+					// Set JWT into local storage
+					$auth.setToken(response.data.token);
+					
+					// Set currentUser
+					$scope.isAuthenticated();
+
+					// Clear sign up form
+					$scope.newUser = {};
+
+					// Redirect to main recipe page
+					$location.path('/');
+
+				}, function(error) {
+					// Add flash message for signup error
+					console.error(error);
+				});
+		};
+			
+
+		$scope.login = function() {
+
+			$auth.login($scope.user)
+				.then(function (response) {
+
+					// Set JWT into local storage
+					$auth.setToken(response.data.token);
+
+					// Set currentUser
+					$scope.isAuthenticated();
+
+					// Clear login form
+					$scope.user = {};
+
+					// Redirect to home page
+					$location.path('/');
+
+				}, function(error) {
+					// add flash message for login error
+					console.error(error);
+				}); 
+		};
 
 }]);

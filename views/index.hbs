@@ -11,6 +11,8 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
 		<!-- ngResource -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+		<!-- satellizer -->
+		<script src="//cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
 		<!-- custom angular js -->
 		<script type="text/javascript" src="scripts/app.js"></script>
 		<!-- bootstrap css -->
@@ -23,15 +25,26 @@
 		<link type="text/css" rel="stylesheet" href="styles/main.css">
 	</head>
 	<!-- Main container -->
-	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<h1 class="text-center">What should we eat today?</h1>
-				</div>
+	<body ng-controller="MainCtrl">
+		<!-- begin navbar  -->
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar">
+					<a class="btn" href="/">Home</a>
+					<a ng-show="currentUser" class="btn pull-right" href="#" ng-click="logout()">Logout</a>
+					<a ng-show="!currentUser" class="btn pull-right" href="/signup">Sign-up</a>
+					<a ng-show="!currentUser" class="btn pull-right" href="/login">Login</a>
+				</nav>
 			</div>
-			<hr>
+		</div>
+		<!-- end navbar  -->
+		<div class="container-fluid">
+			<p ng-show="currentUser">current user is \{{currentUser.firstName}}</p>
 			<div ng-view></div>
 		</div>
+		<!-- jquery -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<!-- bootstrap js -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</body>
 </html>
