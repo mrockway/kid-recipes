@@ -25,18 +25,21 @@
 		<link type="text/css" rel="stylesheet" href="styles/main.css">
 	</head>
 	<!-- Main container -->
-	<body>
+	<body ng-controller="MainCtrl">
 		<!-- begin navbar  -->
 		<div class="row">
 			<div class="col-md-12">
-				<nav class="navbar pull-right">
-					<a class="btn" href="/signup">Sign-up</a>
-					<a class="btn" href="/login">Login</a>
+				<nav class="navbar">
+					<a class="btn" href="/">Home</a>
+					<a ng-show="currentUser" class="btn pull-right" href="#" ng-click="logout()">Logout</a>
+					<a ng-show="!currentUser" class="btn pull-right" href="/signup">Sign-up</a>
+					<a ng-show="!currentUser" class="btn pull-right" href="/login">Login</a>
 				</nav>
 			</div>
 		</div>
 		<!-- end navbar  -->
 		<div class="container-fluid">
+			<p ng-show="currentUser">current user is \{{currentUser.firstName}}</p>
 			<div ng-view></div>
 		</div>
 		<!-- jquery -->

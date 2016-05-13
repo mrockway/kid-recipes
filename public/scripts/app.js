@@ -54,12 +54,42 @@ app.factory('Recipe', ['$resource', function($resource) {
 // Controllers //
 /////////////////
 
+app.controller("MainCtrl", ['$scope', '$auth', '$http', '$location', function($scope, $auth, $http, $location){
+	
+	$scope.isAuthenticated = function() {
+		$http.get('/api/me').then(function(response){
+			if (response.data) {
+				console.log(response);
+				$scope.currentUser = response.data;
+			} else {
+				$auth.removeToken();
+			}
+			}, function (error) {
+				console.error(error);
+				$auth.removeToken();
+		});
+	};
+
+	$scope.isAuthenticated();
+	
+	$scope.logout = function() {
+		
+		$auth.logout().then(function() {
+			// Set current user to null
+			$scope.currentUser = null;
+			// Redirect to login page
+			$location.path('/login');
+
+		});
+	};
+	// place in the body tag
+}]);
+
 // Controller for the 'Home Page'
 app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 
 	// Get all active recipes from the database for all users
 	$scope.recipes = Recipe.query(function() {});
-
 
 }]);
 
@@ -165,28 +195,51 @@ app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 
 app.controller("AuthCtrl", ['$scope', '$location', '$auth', function($scope, $location, $auth) {
 		
-		$scope.signupForm = function() {
+		$scope.signup = function() {
 			
-			$auth.signup($scope.newUser)
+			$auth.signup($scope.user)
 				.then(function(response) {
-					
-					$auth.setToken(response.data.token);
-					console.log(response.data.token);
-					//$scope.isAuthenticated();	
 
+					// Set JWT into local storage
+					$auth.setToken(response.data.token);
+					
+					// Set currentUser
+					$scope.isAuthenticated();
+
+					// Clear sign up form
 					$scope.newUser = {};
 
+					// Redirect to main recipe page
 					$location.path('/');
+
 				}, function(error) {
+					// Add flash message for signup error
 					console.error(error);
 				});
-				
 		};
+			
 
-		$scope.userLogin = function() {
-			var user = $scope.user;
-			console.log('user', user);
+		$scope.login = function() {
+
+			$auth.login($scope.user)
+				.then(function (response) {
+
+					// Set JWT into local storage
+					$auth.setToken(response.data.token);
+
+					// Set currentUser
+					$scope.isAuthenticated();
+
+					// Clear login form
+					$scope.user = {};
+
+					// Redirect to home page
+					$location.path('/');
+
+				}, function(error) {
+					// add flash message for login error
+					console.error(error);
+				}); 
 		};
 
 }]);
-
