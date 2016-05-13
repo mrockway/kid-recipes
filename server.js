@@ -53,16 +53,25 @@ app.get('/api/recipes', function (req,res) {
 	// filtering will be done w/angular
 });
 
-app.post('/api/recipes', function(req,res) {
-	// save new recipes from user input
-	var newRecipe = new Recipe(req.body);
-	newRecipe.save( function(err, savedRecipe) {
-		if (err) {
-			res.status(500).json({error: err.message});
-		} else {
-			res.json(savedRecipe);
+app.post('/api/recipes', auth.ensureAuthenticated, function(req,res) {
+
+	User.findById(req.user, function(err, user) {
+		if (!user) {
+			return res.send({message: "You must be logged in."});
 		}
+		// save new recipes from user input
+		var newRecipe = new Recipe(req.body);
+		newRecipe.save( function(err, savedRecipe) {
+			if (err) {
+				res.status(500).json({error: err.message});
+			} else {
+				user.recipes.push(newRecipe);
+				user.save();
+				res.json(savedRecipe);
+			}
+		});
 	});
+	
 });
 
 app.get('/api/recipes/:id', function(req,res) {

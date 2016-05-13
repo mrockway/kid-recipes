@@ -175,17 +175,18 @@ app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 		newRecipe.mealType = meals;
 
 		for (var i = 0; i < newRecipe.ingredients.length; i++) {
-			console.log(newRecipe.ingredients[i].name);
 			if (newRecipe.ingredients[i].name !== '') {
-				console.log('i',i);
 				ingredients.push({name: newRecipe.ingredients[i].name});
 			}
 		}
 
 		newRecipe.ingredients = ingredients;
 
-		console.log('newRecipe',newRecipe);
-		Recipe.save(newRecipe);
+		Recipe.save(newRecipe, function (response) {
+			console.log('success save',response);
+		}, function(err) {
+			console.log('You must me logged in',err);
+		});
 
 		blankRecipe();
 		
