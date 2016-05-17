@@ -6,7 +6,9 @@ var RecipeSchema = new Schema({
 	comment: String,
 	ingredients: Array,
 	mealType: Array,
-	name: String
+	name: String,
+	public: Boolean,
+	userID: String
 });
 
 var Recipe = mongoose.model('Recipe', RecipeSchema);

@@ -5,8 +5,7 @@ var UserSchema = new Schema({
 	email: String,
 	firstName: String,
   lastName: String,
-	password: String,
-	recipes: Array
+	password: String
 
 });
 

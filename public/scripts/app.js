@@ -7,6 +7,10 @@ var app = angular.module("kidsFood", ['ngRoute', 'ngResource', 'satellizer']);
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 	$routeProvider
 		.when('/', {
+			templateUrl: 'templates/main.html',
+			controller: 'MainCtrl'
+		})
+		.when('/recipes', {
 			templateUrl: 'templates/recipes.html',
 			controller: 'RecipesCtrl'
 		})
@@ -59,13 +63,12 @@ app.controller("MainCtrl", ['$scope', '$auth', '$http', '$location', function($s
 	$scope.isAuthenticated = function() {
 		$http.get('/api/me').then(function(response){
 			if (response.data) {
-				console.log(response);
 				$scope.currentUser = response.data;
 			} else {
 				$auth.removeToken();
 			}
 			}, function (error) {
-				console.error(error);
+				console.error('error message',error);
 				$auth.removeToken();
 		});
 	};
@@ -89,7 +92,18 @@ app.controller("MainCtrl", ['$scope', '$auth', '$http', '$location', function($s
 app.controller("RecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 
 	// Get all active recipes from the database for all users
-	$scope.recipes = Recipe.query(function() {});
+	$scope.recipes = Recipe.query(function() {
+		console.log('recipes query',$scope.recipes);
+		//$scope.userID = $scope.currentUser._id;
+	});
+	
+
+	$scope.allUsersRecipes = function() {
+		//$scope.userID = false;
+	};
+	
+
+
 
 }]);
 
@@ -141,6 +155,8 @@ app.controller("RecipeCtrl", ['$scope', '$routeParams', 'Recipe', function($scop
 }]);
 
 app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
+
+	$scope.share = false;
 
 	function blankRecipe() {
 		$scope.recipe = {
