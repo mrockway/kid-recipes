@@ -1,11 +1,12 @@
 <div class="row">
 	<div class="col-md-12">
-		<h1 ng-show="currentUser" class="page-header text-center">{{currentUser.firstName}}, what should we eat today?</h1>
+		<h1 class="page-header text-center capitalize"><span ng-show="currentUser"> {{currentUser.firstName}},</span> what should we eat today?</h1>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12 col-sm-12 text-center">
-		<button class="btn btn-lg btn-block" ng-click= "mealType = '' ">See All Recipes</button>
+		<a href="#" ng-show="currentUser" ng-click="allUsersRecipes()">See all user recipes</a>
+		<button class="btn recipe-btn btn-lg btn-block" ng-click= "mealType = '' ">See All Recipes</button>
 	</div>
 </div>
 <br>
@@ -15,36 +16,36 @@
 	</div>
 </div>
 <div class="row text-center">
-	<div class="col-md-6 col-xs-6">
-		<button class="btn btn-lg meal-btn" ng-click= "mealType = 'breakfast'">Breakfast</button>
+	<div class="col-md-3 col-xs-6">
+		<button class="btn recipe-btn btn-lg meal-btn" ng-click= "mealType = 'breakfast'">Breakfast</button>
 	</div>
-	<div class="col-md-6 col-xs-6">
-		<button class="btn btn-lg meal-btn" ng-click= "mealType = 'lunch'">Lunch</button>
+	<div class="col-md-3 col-xs-6">
+		<button class="btn recipe-btn btn-lg meal-btn" ng-click= "mealType = 'lunch'">Lunch</button>
 	</div>
-</div>
-<div class="row text-center">
-	<div class="col-md-6 col-xs-6">
-		<button class="btn btn-lg meal-btn" ng-click= "mealType = 'snack'">Snack</button>
+<!-- </div>
+<div class="row text-center"> -->
+	<div class="col-md-3 col-xs-6">
+		<button class="btn recipe-btn btn-lg meal-btn" ng-click= "mealType = 'snack'">Snack</button>
 	</div>
-	<div class="col-md-6 col-xs-6">
-		<button class="btn btn-lg meal-btn" ng-click= "mealType = 'dinner'">Dinner</button>
+	<div class="col-md-3 col-xs-6">
+		<button class="btn recipe-btn btn-lg meal-btn" ng-click= "mealType = 'dinner'">Dinner</button>
 	</div>
 </div>
 <br>
 <div class="panel panel-default">
 	<div class="panel-heading capitalize">
-		<p class="text-center">{{ mealType }} Recipes</p>
+		<p class="text-center recipe-list-headline">{{ mealType }} Recipes</p>
 	</div>
 	<div class="panel-body input-group">
 		<span class="input-group-addon">Search recipes</span>
 		<input class="form-control" type="text" ng-model="keyword">
 	</div>
 	<div class="list-group">
-		<div ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
+		<div ng-repeat="recipe in recipes  | filter : mealType | filter : keyword">
 			<a class="capitalize list-group-item" href="/recipes/{{recipe._id}}">{{recipe.name}} <span class="badge">{{recipe.ingredients.length}}</span></a>
 		</div>
 	</div>
 </div>
 <div>
-	<a class="btn btn-lg" href="/newrecipe">Add a recipe</a>
+	<a class="btn recipe-btn btn-lg" href="/newrecipe">Add a recipe</a>
 </div>

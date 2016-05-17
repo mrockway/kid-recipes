@@ -1,33 +1,47 @@
 body {
+	background-color: #FFF8E1;
 	font-family: 'Acme', sans-serif;
 }
 
-.btn {
-	background-color: #A6537A;
-	color: #FFFFFF;
+.splash-div {
+	background-image: url("/images/peppers.jpeg");
+	background-size: cover;
+	color: #AAAAAD;
+	height: 100vh;
 }
-.btn:hover {
-	background-color: #D977AD;
+
+.recipe-btn {
+	background-color: #A6537A;
+	border: solid 1px #ffffff;
 	color: #FFFFFF;
 }
 
-.btn:active {
+.recipe-btn:hover {
 	background-color: #D977AD;
-	color: #FFFFFF;
+	border: solid 1px	#000000;
 }
-.btn:focus {
+
+.recipe-btn:active {
 	background-color: #D977AD;
-	color: #FFFFFF;
 }
+
+.recipe-btn:focus {
+	background-color: #D977AD;
+}
+
 .meal-btn {
 	margin-bottom: 5%;;
 	width: 100%;
 }
 
+.recipe-list-headline {
+	font-size: 18px;
+	margin: 0;
+}
+
 .panel-heading {
 	background-color: #A6537A !important;
 	color: #FFFFFF !important;
-	font-size: 2em;
 }
 
 .signup-form {

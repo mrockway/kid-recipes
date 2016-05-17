@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<a class="btn pull-right" href="/">back to recipes</a>
+		<a class="btn recipe-btn pull-right" href="/">back to recipes</a>
 	</div>
 </div>
 <div class="row">
@@ -21,13 +21,13 @@
 				<div ng-repeat="ingredient in recipe.ingredients">
 					<input class="form-control" id="ingredients" type="text" ng-model="recipe.ingredients[$index].name">
 				</div>
-				<button class="btn" ng-click="addMoreIngredients()">Add more ingredients</button>
+				<button class="btn recipe-btn" ng-click="addMoreIngredients()">Add more ingredients</button>
 			</div>
 			<div class="form-group">
 				<label for="comment">Recipe Comments</label>
 				<input class="form-control" type="text" id="comment" ng-model="recipe.comment" placeholder="Special instructions">
 			</div>
-			<input class="btn" type="submit" value="Add to Collection">
+			<input class="btn recipe-btn" type="submit" value="Add to Collection">
 		</form>
 	</div>
 </div>

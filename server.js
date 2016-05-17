@@ -41,28 +41,36 @@ app.get('/api/me', auth.ensureAuthenticated, function(req,res) {
 
 // Query & return all active recipes from database
 app.get('/api/recipes', function (req,res) {
-
-	// Send back all active recipes from the database
-	Recipe.find({'active':true}, function (err, allRecipes) {
-		if (err) {
-			res.status(500).json({ error: err.message });
-		} else {
-			res.json(allRecipes);
-		}
-	});
-	// filtering will be done w/angular
+	Recipe.find({active: true},function (err, allRecipes) {
+	if (err) {
+		return res.status(500).json({ error: err.message });
+	} else {
+		res.json(allRecipes);
+	}
+});
+	
+	// Add check for current user recipes
+	
 });
 
-app.post('/api/recipes', function(req,res) {
-	// save new recipes from user input
-	var newRecipe = new Recipe(req.body);
-	newRecipe.save( function(err, savedRecipe) {
-		if (err) {
-			res.status(500).json({error: err.message});
-		} else {
-			res.json(savedRecipe);
+app.post('/api/recipes', auth.ensureAuthenticated, function(req,res) {
+
+	User.findById(req.user, function(err, user) {
+		if (!user) {
+			return res.send({message: "You must be logged in."});
 		}
+		// save new recipes from user input
+		var newRecipe = new Recipe(req.body);
+		newRecipe.userID = user._id;
+		newRecipe.save( function(err, savedRecipe) {
+			if (err) {
+				res.status(500).json({error: err.message});
+			} else {
+				res.json(savedRecipe);
+			}
+		});
 	});
+	
 });
 
 app.get('/api/recipes/:id', function(req,res) {
