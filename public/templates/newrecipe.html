@@ -1,33 +1,55 @@
-<div class="row">
-	<div class="col-md-12">
-		<a class="btn recipe-btn pull-right" href="/">back to recipes</a>
+<div ng-controller="NewRecipeCtrl">
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn recipe-btn pull-right" href="/recipes">back to recipes</a>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-12">
-		<form ng-submit="addRecipe()">
-			<div class="checkbox"><strong>Meals:</strong>
-				<label><input ng-model="recipe.mealType.breakfast" type="checkbox">Breakfast</label>
-				<label><input ng-model="recipe.mealType.lunch" type="checkbox">Lunch</label>
-				<label><input ng-model="recipe.mealType.snack" type="checkbox">Snack</label>
-				<label><input ng-model="recipe.mealType.dinner" type="checkbox">Dinner</label>
-			</div>
-			<div class="form-group">
-				<label for="name">Recipe name</label>
-				<input class="form-control" type="text" id="name" placeholder="Recipe Name" ng-model="recipe.name">
-			</div>
-			<div class="form-group">
-				<label for="ingredients">Enter Ingredients</label>
-				<div ng-repeat="ingredient in recipe.ingredients">
-					<input class="form-control" id="ingredients" type="text" ng-model="recipe.ingredients[$index].name">
+	<div class="row">
+		<div class="col-md-12">
+		<md-content>
+			<form ng-submit="addRecipe()">
+				<div class="checkbox">
+					<md-content>
+					<span>Meals:&nbsp;&nbsp;</span>
+					<div ng-repeat="meal in meals">
+					<md-checkbox
+						ng-checked="exists(meal, recipe.mealType)" 
+						ng-click="toggle(meal, recipe.mealType)">
+						{{meal}}
+					</md-checkbox>
+					</div>
+				</md-content>
 				</div>
-				<button class="btn recipe-btn" ng-click="addMoreIngredients()">Add more ingredients</button>
-			</div>
-			<div class="form-group">
-				<label for="comment">Recipe Comments</label>
-				<input class="form-control" type="text" id="comment" ng-model="recipe.comment" placeholder="Special instructions">
-			</div>
-			<input class="btn recipe-btn" type="submit" value="Add to Collection">
-		</form>
+				<md-input-container class="md-block">
+					<div class="form-group">
+						<label for="name">Recipe name</label>
+						<input class="form-control" type="text" ng-model="recipe.name">
+					</div>	
+				</md-input-container>	
+				
+					<div class="form-group">
+						<label for="ingredients">Enter Ingredients</label>
+						<div ng-repeat="ingredient in recipe.ingredients track by $index">
+							<input class="form-control" id="ingredients" type="text" ng-model="recipe.ingredients[$index]">
+						</div>
+					</div>
+				
+				<md-input-container class="md-block">
+					<div>
+						<md-button class="md-raised btn recipe-btn" ng-click="addMoreIngredients(recipe)">More ingredients</md-button>
+					</div>
+				</md-input-container>
+				<md-input-container class="md-block">
+				<div class="form-group">
+					<label for="comment">Recipe Comments</label>
+					<input class="form-control" type="text" id="comment" ng-model="recipe.comment">
+				</div>
+				</md-input-container>
+				<md-input-container class="md-block">
+				<input class="btn recipe-btn" type="submit" value="Add to Collection">
+				</md-input-container>
+			</form>
+		</md-content>
+		</div>
 	</div>
 </div>
