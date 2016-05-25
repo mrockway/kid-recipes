@@ -66,6 +66,8 @@ app.post('/api/recipes', auth.ensureAuthenticated, function(req,res) {
 			if (err) {
 				res.status(500).json({error: err.message});
 			} else {
+				user.recipes.push(newRecipe);
+				user.save();
 				res.json(savedRecipe);
 			}
 		});
@@ -98,7 +100,7 @@ app.delete('/api/recipes/:id', function(req,res) {
 });
 
 app.post('/auth/signup', function(req,res) {
-
+	console.log('form signup');
 	User.findOne({email: req.body.email }, function(err, existingUser) {
 		if (existingUser) { 
 			return res.status(409).send({message: 'Email is already taken.'}); 

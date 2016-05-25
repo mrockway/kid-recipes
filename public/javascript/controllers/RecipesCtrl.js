@@ -31,6 +31,9 @@ angular.module('kidsFood')
 ////////////////////////////////
 	
 app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
+	
+	$scope.mealType = '';
+
 	// Get all active recipes from the database for all users
 	$scope.recipes = Recipe.query(function() {
 		console.log('recipes query',$scope.recipes);

@@ -2,28 +2,22 @@ angular.module("kidsFood")
 	.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 		$routeProvider
 			.when('/', {
-				templateUrl: 'templates/main.html',
-				controllerAs: 'MainCtrl'
+				templateUrl: 'templates/main.html'
 			})
 			.when('/recipes', {
-				templateUrl: 'templates/recipes.html',
-				controllerAs: 'controllers/RecipesCtrl'
+				templateUrl: 'templates/recipes.html'
 			})
 			.when('/newrecipe', {
-				templateUrl: 'templates/newrecipe.html',
-				controllerAs: 'controllers/RecipesCtrl'
+				templateUrl: 'templates/newrecipe.html'
 			})
 			.when('/recipes/:recipeId', {
-				templateUrl: 'templates/recipe.html',
-				controllerAs: 'controllers/RecipesCtrl'
+				templateUrl: 'templates/recipe.html'
 			})
 			.when('/signup', {
-				templateUrl: 'templates/signup.html',
-				controllerAs: 'controllers/AuthCtrl'
+				templateUrl: 'templates/signup.html'
 			})
 			.when('/login', {
-				templateUrl: 'templates/login.html',
-				controllerAs: 'controllers/AuthCtrl'
+				templateUrl: 'templates/login.html'
 			})
 			.otherwise({
 				redirectTo: '/'

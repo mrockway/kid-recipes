@@ -1,6 +1,6 @@
 angular.module('kidsFood')
 .controller("AuthCtrl", ['$scope', '$location', '$auth', function($scope, $location, $auth) {
-		
+	
 		$scope.signup = function() {
 			
 			$auth.signup($scope.user)
@@ -16,7 +16,7 @@ angular.module('kidsFood')
 					$scope.newUser = {};
 
 					// Redirect to main recipe page
-					$location.path('/');
+					$location.path('/recipes');
 
 				}, function(error) {
 					// Add flash message for signup error
@@ -39,8 +39,8 @@ angular.module('kidsFood')
 					// Clear login form
 					$scope.user = {};
 
-					// Redirect to home page
-					$location.path('/');
+					// Redirect to recipes page
+					$location.path('/recipes');
 
 				}, function(error) {
 					// add flash message for login error
