@@ -5,46 +5,51 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<base href="/">
 		<title>KidFood</title>
-		<!-- angular -->
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		
+		<!-- Angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <!-- Angular Material Dependencies -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+
 		<!-- ngRoute -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
 		<!-- ngResource -->
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
 		<!-- satellizer -->
 		<script src="//cdn.jsdelivr.net/satellizer/0.14.0/satellizer.min.js"></script>
+	
 		<!-- custom angular js -->
-		<script type="text/javascript" src="scripts/app.js"></script>
-		<!-- bootstrap css -->
-		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<!-- font awesome -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="javascript/app.js"></script>
+		<script type="text/javascript" src="javascript/routes.js"></script>
+		<script type="text/javascript" src="javascript/controllers/MainCtrl.js"></script>
+		<script type="text/javascript" src="javascript/controllers/RecipesCtrl.js"></script>
+		<script type="text/javascript" src="javascript/controllers/AuthCtrl.js"></script>
+	
+		<!-- angular materialize css -->
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+		<!-- material icons -->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 		<!-- google font -->
 		<link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet' type='text/css'>
 		<!-- custom css -->
-		<link type="text/css" rel="stylesheet" href="styles/main.css">
+		<link type="text/css" rel="stylesheet" href="css/main.css">
 	</head>
 	<!-- Main container -->
-	<body ng-controller="MainCtrl">
-		<!-- begin navbar  -->
-		<div class="row">
-			<div class="col-md-12">
-				<nav class="navbar">
-					<a class="btn" href="/">Home</a>
-					<a ng-show="currentUser" class="btn pull-right" href="#" ng-click="logout()">Logout</a>
-					<a ng-show="!currentUser" class="btn pull-right" href="/signup">Sign-up</a>
-					<a ng-show="!currentUser" class="btn pull-right" href="/login">Login</a>
-				</nav>
-			</div>
-		</div>
-		<!-- end navbar  -->
-		<div class="container-fluid">
-			{{!-- ADD FLASH MESSAGES HERE --}}
-			<div ng-view></div>
-		</div>
-		<!-- jquery -->
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<!-- bootstrap js -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<body ng-controller="MainCtrl" layout="column">
+		<!-- begin toolbar  -->
+		<md-toolbar layout="row">
+			<a href="/">Home</a>
+			<a href="/recipes">Recipes</a>
+			<a ng-show="currentUser" href="#" ng-click="logout()">Logout</a>
+			<a ng-show="!currentUser" href="/signup">Sign-up</a>
+			<a ng-show="!currentUser" href="/login">Login</a>
+		</md-toolbar>
+		<!-- end toolbar  -->
+		<!-- ADD FLASH MESSAGES HERE -->
+		<div ng-view layout="row" flex></div>
+    <!-- Angular Material Javascript -->
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
 	</body>
 </html>

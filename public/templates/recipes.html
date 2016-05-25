@@ -1,51 +1,44 @@
-<div class="row">
-	<div class="col-md-12">
-		<h1 class="page-header text-center capitalize"><span ng-show="currentUser"> {{currentUser.firstName}},</span> what should we eat today?</h1>
+<div ng-controller="RecipesCtrl" layout="column" flex layout-margin>
+	<div ng-controller="ViewRecipesCtrl" layout="column" flex>
+		<md-content flex layout="column">
+			<div layout="row" layout-align="center center">
+					<h1 class="capitalize"><span ng-show="currentUser"> {{currentUser.firstName}},</span> what should we eat today?</h1>
+			</div>
+			<!-- Buttons to show all recipes and just user recipes -->
+			<p>*****add switch/toggle to show or hide all user recipes instead of button******</p>
+			<div layout="row" layout-align="center center">
+				<md-button class="md-raised recipe-btn" ng-hide="mealType == '' || !currentUser" ng-click= "mealType = '' " flex>See All Your Recipes</md-button>
+			</div>
+			<!-- End buttons to show all recipes and just user recipes -->
+			<div layout="row">
+				<md-button ng-repeat="meal in meals" class="md-raised recipe-btn meal-btn" flex ng-click="$parent.mealType = meal">{{meal}}</md-button>
+			</div>
+			<div layout="row" layout-align="center center">
+				<p class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
+			</div>
+			<div layout="row" layout-padding flex>
+				<md-input-container layout="column" flex>
+					<label>Search Recipes</label>
+					<input type="text" ng-model="keyword">
+				</md-input-container>
+			</div>
+			<div layout="row" layout-wrap>
+				<md-card ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
+					<md-card-header>
+						<md-card-header-text>UserID, {{recipe.userID}}</md-card-header-text>
+					</md-card-header>
+					<md-card-title>
+						<md-card-title-text class="capitalize">{{recipe.name}}</md-card-title-text>
+					</md-card-title>
+					<md-card-content>
+						<p>Ingredient count:  {{recipe.ingredients.length}}</p>
+					</md-card-content>
+					<md-card-actions>
+						<md-button href="/recipes/{{recipe._id}}">Edit</md-button>
+					</md-card-actions>
+				</md-card>
+				<md-button class="md-raised" href="/newrecipe"><md-icon class="material-icons">add_circle_outline</md-icon><br>Add Recipe</md-button>
+			</div>
+		</md-content>
 	</div>
-</div>
-<div class="row">
-	<div class="col-md-12 col-sm-12 text-center">
-		<a href="#" ng-show="currentUser" ng-click="allUsersRecipes()">See all user recipes</a>
-		<button class="btn recipe-btn btn-lg btn-block" ng-click= "mealType = '' ">See All Recipes</button>
-	</div>
-</div>
-<br>
-<div class="row">
-	<div class="col-md-12">
-		<p class="text-center">Filter Meals</p>
-	</div>
-</div>
-<div class="row text-center">
-	<div class="col-md-3 col-xs-6">
-		<button class="btn recipe-btn btn-lg meal-btn" ng-click= "mealType = 'breakfast'">Breakfast</button>
-	</div>
-	<div class="col-md-3 col-xs-6">
-		<button class="btn recipe-btn btn-lg meal-btn" ng-click= "mealType = 'lunch'">Lunch</button>
-	</div>
-<!-- </div>
-<div class="row text-center"> -->
-	<div class="col-md-3 col-xs-6">
-		<button class="btn recipe-btn btn-lg meal-btn" ng-click= "mealType = 'snack'">Snack</button>
-	</div>
-	<div class="col-md-3 col-xs-6">
-		<button class="btn recipe-btn btn-lg meal-btn" ng-click= "mealType = 'dinner'">Dinner</button>
-	</div>
-</div>
-<br>
-<div class="panel panel-default">
-	<div class="panel-heading capitalize">
-		<p class="text-center recipe-list-headline">{{ mealType }} Recipes</p>
-	</div>
-	<div class="panel-body input-group">
-		<span class="input-group-addon">Search recipes</span>
-		<input class="form-control" type="text" ng-model="keyword">
-	</div>
-	<div class="list-group">
-		<div ng-repeat="recipe in recipes  | filter : mealType | filter : keyword">
-			<a class="capitalize list-group-item" href="/recipes/{{recipe._id}}">{{recipe.name}} <span class="badge">{{recipe.ingredients.length}}</span></a>
-		</div>
-	</div>
-</div>
-<div>
-	<a class="btn recipe-btn btn-lg" href="/newrecipe">Add a recipe</a>
 </div>

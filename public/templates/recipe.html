@@ -1,50 +1,66 @@
-<div class="individual-recipe" ng-hide="editForm">
-	<div class="row">
-		<div class="col-md-12">
-			<a class="btn recipe-btn pull-right" href="/">All Recipes</a>
+<div layout="column" flex layout-margin ng-controller="RecipesCtrl">
+	<div layout="column" flex ng-controller="SingleRecipeCtrl">
+	<md-content>
+		<div layout="row" class="individual-recipe" ng-hide="editForm">
+			<md-button class="md-raised recipe-btn" href="/recipes">All Recipes</md-button>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<h1 class="capitalize text-center">{{foundRecipe.name}}</h1>
-			<h2>Ingredients</h2>
-			<ul class="ingredients" ng-repeat="ingredients in foundRecipe.ingredients">
-				<li>{{ingredients.name}}</li>
-			</ul>
+		<div layout="column">
+			<h1 layout-align="center center" class="capitalize">{{foundRecipe.name}}</h1>
+			<h2>Ingredients: <span ng-repeat="ingredients in foundRecipe.ingredients">
+				{{ingredients}}</span></h2>
 			<p ng-if="foundRecipe.comment !== ''">Special Instructions: {{foundRecipe.comment}}</p>
-			<button class="btn recipe-btn" ng-click="editForm = !editForm"><i class="fa fa-pencil"></i> Edit</button>
-			<button class="btn recipe-btn" ng-hide="editForm" ng-click="removeRecipe()"><i class="fa fa-trash"></i> Remove</button>
-		</div>
-	</div>
-	<hr>
-</div>
-<div class="edit-form" ng-show="editForm">
-	<button class="pull-right btn recipe-btn" ng-show="editForm" ng-click="editForm = !editForm">Cancel</button>
-	<form ng-submit="updateRecipe()">
-		<div class="checkbox"><strong>Change meals:</strong>
-			<label><input ng-model="updateRecipe.mealType.breakfast" type="checkbox">Breakfast</label>
-			<label><input ng-model="updateRecipe.mealType.lunch" type="checkbox">Lunch</label>
-			<label><input ng-model="updateRecipe.mealType.snack" type="checkbox">Snack</label>
-			<label><input ng-model="updateRecipe.mealType.dinner" type="checkbox">Dinner</label>
-		</div>
-		<div class="form-group">
-			<label for="name">Recipe name</label>
-			<input class="form-control" type="text" id="name" placeholder="Name" ng-model="foundRecipe.name">
-		</div>
-		<div class="form-group">
-			<label for="ingredients">Enter Ingredients</label>
-			<div id="ingredients" ng-repeat="ingredient in foundRecipe.ingredients">
-				<input class="form-control" type="text" ng-model="foundRecipe.ingredients[$index].name" placeholder="Ingredient name">
+			<div layout="row">
+				<md-button class="md-raised recipe-btn" ng-hide="editForm" ng-click="editForm = !editForm">Edit</md-button>
+				<md-button class="md-raised recipe-btn" ng-hide="editForm" ng-click="removeRecipe()">Remove</md-button>
 			</div>
-			<input type="button" class="btn recipe-btn" value="Add more ingredients" ng-click="addMoreIngredients()">
 		</div>
-		<div class="form-group">
-			<label for="comment">Recipe Comments</label>
-			<input class="form-control" type="text" id="comment" ng-model="foundRecipe.comment" placeholder="Special instructions">
+		<hr>
+		<div class="edit-form" ng-show="editForm" layout="column">
+			<div layout="row">
+				<md-button class="md-raised recipe-btn" ng-show="editForm" ng-click="editForm = !editForm">Cancel</md-button>
+			</div>
+			<br>
+			<div layout="row">
+			<form ng-submit="updateRecipe()" flex-offset="25" flex="50">
+					<div layout="column">
+						<div class="checkbox">
+							<span>Meals:&nbsp;&nbsp;</span>
+							<md-checkbox
+								ng-repeat="meal in meals"
+								class="capitalize"
+								ng-checked="exists(meal, foundRecipe.mealType)" 
+								ng-click="toggle(meal, foundRecipe.mealType)">
+								{{meal}}
+							</md-checkbox>
+						</div>
+						<md-input-container>
+							<label>Recipe name</label>
+							<input type="text" ng-model="foundRecipe.name">
+						</md-input-container>	
+						<p>Enter Ingredients</p>
+						<div layout="row" flex>
+						<md-input-container	ng-repeat="ingredient in foundRecipe.ingredients track by $index">
+							<label>Ingredient {{$index + 1}}</label>
+							<input type="text" ng-model="foundRecipe.ingredients[$index]">
+						</md-input-container>
+						</div>
+						<md-input-container>
+							<md-button class="md-raised btn recipe-btn" ng-click="addMoreIngredients(foundRecipe)">More ingredients</md-button>
+						</md-input-container>
+						<md-input-container>
+							<label>Recipe Comments</label>
+							<input type="text" ng-model="foundRecipe.comment">
+						</md-input-container>
+						<md-input-container>
+							<md-button class="md-raised recipe-btn" type="submit" ng-click="editForm = !editForm">Update Recipe</md-button>
+						</md-input-container>
+					</div>
+				</form>
+				</div>
 		</div>
-		<input class="btn recipe-btn" type="submit" value="Update" ng-click="editForm = !editForm">
-	</form>
-</div>
-<div ng-hide="editForm">
-	<a class="btn recipe-btn" href="/newrecipe">Add a recipe</a>
+		<div ng-hide="editForm">
+			<md-button class="md-raised" href="/newrecipe"><md-icon class="material-icons">add_circle_outline</md-icon><br>Add Recipe</md-button>
+		</div>
+		</md-content>
+	</div>
 </div>

@@ -3,13 +3,6 @@ body {
 	font-family: 'Acme', sans-serif;
 }
 
-.splash-div {
-	background-image: url("/images/peppers.jpeg");
-	background-size: cover;
-	color: #AAAAAD;
-	height: 100vh;
-}
-
 .recipe-btn {
 	background-color: #A6537A;
 	border: solid 1px #ffffff;
@@ -48,9 +41,8 @@ body {
 	padding: 0;
 }
 
-.input-group-addon {
-	background-color: #A6537A;
-	color: #FFFFFF;
+.search-container {
+	border: 1px solid #d3d3d3;
 }
 
 .capitalize {
