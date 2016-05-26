@@ -31,15 +31,36 @@ angular.module('kidsFood')
 ////////////////////////////////
 	
 app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
-	
-	$scope.mealType = '';
-
-	// Get all active recipes from the database for all users
-	$scope.recipes = Recipe.query(function() {
+	// Get all recipes from the database
+	if ($scope.currentUser) {
+	$scope.recipes = Recipe.query({userID: $scope.currentUser._id},function() {
 		console.log('recipes query',$scope.recipes);
 		// add logic to show only logged in user recipes, unless no user logged in then show all
 		//$scope.userID = $scope.currentUser._id;
+
 	});
+	} else {
+		$scope.recipes = Recipe.query({active: true},function() {
+		console.log('recipes query',$scope.recipes);
+		// add logic to show only logged in user recipes, unless no user logged in then show all
+		//$scope.userID = $scope.currentUser._id;
+
+	});
+	}
+
+	$scope.mealType = '';
+
+	$scope.personalRecipes = true;
+
+	$scope.recipeListChange = function(personalRecipes) {
+		if (personalRecipes) {
+
+		}
+		personalRecipes = !personalRecipes;
+	};
+
+	// Get all active recipes from the database for all users
+	
 	$scope.allUsersRecipes = function() {
 		//$scope.recipes ...... filter recipes
 	};
@@ -109,7 +130,7 @@ app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 		Recipe.save($scope.recipe, function (response) {
 			console.log('success save',response);
 		}, function(err) {
-			console.log('You must me logged in',err);
+			console.log('You must be logged in',err);
 		});
 
 		blankRecipe();

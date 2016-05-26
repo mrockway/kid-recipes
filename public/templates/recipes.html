@@ -5,9 +5,10 @@
 					<h1 class="capitalize"><span ng-show="currentUser"> {{currentUser.firstName}},</span> what should we eat today?</h1>
 			</div>
 			<!-- Buttons to show all recipes and just user recipes -->
+			<md-switch class="md-primary" ng-model="personalRecipes" ng-change="recipeListChange(personalRecipes)">{{personalRecipes}}</md-switch>
 			<p>*****add switch/toggle to show or hide all user recipes instead of button******</p>
 			<div layout="row" layout-align="center center">
-				<md-button class="md-raised recipe-btn" ng-hide="mealType == '' || !currentUser" ng-click= "mealType = '' " flex>See All Your Recipes</md-button>
+				<md-button class="md-raised recipe-btn" ng-hide="mealType == '' " ng-click= "mealType = '' " flex>See All Your Recipes</md-button>
 			</div>
 			<!-- End buttons to show all recipes and just user recipes -->
 			<div layout="row">
@@ -25,15 +26,15 @@
 			<div layout="row" layout-wrap>
 				<md-card ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
 					<md-card-header>
-						<md-card-header-text>UserID, {{recipe.userID}}</md-card-header-text>
+						<md-card-header-text class="md-caption capitalize">Posted by: {{recipe.user.firstName}}</md-card-header-text>
 					</md-card-header>
 					<md-card-title>
 						<md-card-title-text class="capitalize">{{recipe.name}}</md-card-title-text>
 					</md-card-title>
 					<md-card-content>
-						<p>Ingredient count:  {{recipe.ingredients.length}}</p>
+						<p>Ingredients: {{recipe.ingredients.length}}</p>
 					</md-card-content>
-					<md-card-actions>
+					<md-card-actions ng-if="currentUser._id == recipe.user._id">
 						<md-button href="/recipes/{{recipe._id}}">Edit</md-button>
 					</md-card-actions>
 				</md-card>

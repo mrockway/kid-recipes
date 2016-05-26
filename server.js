@@ -41,7 +41,8 @@ app.get('/api/me', auth.ensureAuthenticated, function(req,res) {
 
 // Query & return all active recipes from database
 app.get('/api/recipes', function (req,res) {
-	Recipe.find({active: true},function (err, allRecipes) {
+	Recipe.find({active: true}).populate('user').exec(function (err, allRecipes) {
+	
 	if (err) {
 		return res.status(500).json({ error: err.message });
 	} else {
@@ -54,20 +55,19 @@ app.get('/api/recipes', function (req,res) {
 });
 
 app.post('/api/recipes', auth.ensureAuthenticated, function(req,res) {
-
 	User.findById(req.user, function(err, user) {
 		if (!user) {
 			return res.send({message: "You must be logged in."});
 		}
 		// save new recipes from user input
 		var newRecipe = new Recipe(req.body);
-		newRecipe.userID = user._id;
+		newRecipe.user = user._id;
 		newRecipe.save( function(err, savedRecipe) {
 			if (err) {
 				res.status(500).json({error: err.message});
 			} else {
-				user.recipes.push(newRecipe);
-				user.save();
+				// user.recipes.push(newRecipe);
+				// user.save();
 				res.json(savedRecipe);
 			}
 		});
@@ -156,5 +156,5 @@ app.get('*', function(req,res) {
 
 // listen on port 3000
 app.listen(process.env.PORT || 5000, function() {
-	console.log('server running');
+	console.log("Let's get cooking");
 });

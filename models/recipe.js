@@ -8,7 +8,7 @@ var RecipeSchema = new Schema({
 	mealType: Array,
 	name: String,
 	public: Boolean,
-	userID: String
+	user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 
 var Recipe = mongoose.model('Recipe', RecipeSchema);
