@@ -11,9 +11,9 @@
 				<li>{{ingredients}}</li>
 			</ul>
 			<p ng-if="foundRecipe.comment !== ''">Special Instructions: {{foundRecipe.comment}}</p>
-			<div layout="row">
-				<md-button class="md-raised recipe-btn" ng-hide="editForm" ng-click="editForm = !editForm">Edit</md-button>
-				<md-button class="md-raised recipe-btn" ng-hide="editForm" ng-click="removeRecipe()">Remove</md-button>
+			<div layout="row" ng-if="currentUser._id == recipe.user._id">
+				<md-button class="md-raised recipe-btn" ng-hide="editForm" ng-click="editForm = !editForm"><md-icon class="material-icons">edit</md-icon>Edit</md-button>
+				<md-button class="md-raised recipe-btn" ng-hide="editForm" ng-click="removeRecipe()"><md-icon class="material-icons">delete</md-icon>Remove</md-button>
 			</div>
 		</div>
 		<hr>
