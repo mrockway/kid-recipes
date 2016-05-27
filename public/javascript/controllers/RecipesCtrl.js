@@ -31,39 +31,40 @@ angular.module('kidsFood')
 ////////////////////////////////
 	
 app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
+
+	// Declare initial variables for Recipes page
+	$scope.mealType = '';
+	$scope.personalRecipes = true;
+	$scope.recipeCollection = "See only my recipes";
+	$scope.userSelection = $scope.currentUser._id || '';
+
 	// Get all recipes from the database
 	if ($scope.currentUser) {
-	$scope.recipes = Recipe.query({userID: $scope.currentUser._id},function() {
-		console.log('recipes query',$scope.recipes);
-		// add logic to show only logged in user recipes, unless no user logged in then show all
-		//$scope.userID = $scope.currentUser._id;
+		$scope.recipes = Recipe.query({userID: $scope.currentUser._id, active: false},function() {
+			console.log('recipes query',$scope.recipes);
+			// add logic to show only logged in user recipes, unless no user logged in then show all
+			//$scope.userID = $scope.currentUser._id;
 
-	});
-	} else {
+		});
+	} else if(!personalRecipes) {
 		$scope.recipes = Recipe.query({active: true},function() {
 		console.log('recipes query',$scope.recipes);
-		// add logic to show only logged in user recipes, unless no user logged in then show all
-		//$scope.userID = $scope.currentUser._id;
 
 	});
 	}
 
-	$scope.mealType = '';
-
-	$scope.personalRecipes = true;
-
+	// Toggle switch function to change the recipes displayed on the page
 	$scope.recipeListChange = function(personalRecipes) {
 		if (personalRecipes) {
-
+			$scope.recipeCollection = "See only my recipes";
+			$scope.userSelection = $scope.currentUser._id;
+		} else {
+			$scope.recipeCollection = "Browse the community";
+			$scope.userSelection = '';
 		}
 		personalRecipes = !personalRecipes;
 	};
-
-	// Get all active recipes from the database for all users
 	
-	$scope.allUsersRecipes = function() {
-		//$scope.recipes ...... filter recipes
-	};
 
 }]);
 	
