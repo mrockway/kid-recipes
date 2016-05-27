@@ -4,9 +4,10 @@ body {
 }
 
 #splash {
-	background-image: url('../images/morning-breakfast.jpg');
+	background-image: url('../images/muffin.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
+	color: #FFFFFF;
 }
 
 .headline {
