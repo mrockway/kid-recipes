@@ -3,6 +3,21 @@ body {
 	font-family: 'Acme', sans-serif;
 }
 
+#splash {
+	background-image: url('../images/muffin.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #FFFFFF;
+}
+
+.headline {
+	font-size: 3em;
+}
+
+#about-site {
+	background-color: rgba(52,52,52,0.5);
+}
+
 .recipe-btn {
 	background-color: #A6537A;
 	border: solid 1px #ffffff;
