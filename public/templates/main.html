@@ -1,15 +1,27 @@
-<md-content layout="column" flex id="splash">
-	<div id="about-site" layout="column" layout-align="center center" flex layout-padding>
-		<h1 class="headline">Don't let your kids get tired of having the same meal each and every day.</h1>
-		<p>Create and store your recipes online and bring them with you everywhere you go.</p>
-		<p>Share your recipes with other members or keep them all to yourself.</p>
-		<p>Get ideas from other members to try out yourself!</p>
+<md-content layout="column" id="welcome-page" layout-fill ng-cloak>
+	<div id="intro-site" layout="column" layout-align="center center">
+		<h1 class="headline" layout>Don't let your kids get tired of having the same meal every day.</h1>
+		<h1 class="headline" layout>Get ideas and keep your recipes organized.</h1>
+		<div layout="row">
+			<md-card ng-repeat="card in cardInfo" flex="33" class="main-card" layout-align="center center">
+				<md-card-title>
+					<md-card-title-text class="capitalize">
+						<h1 layout="row">{{card.title}}</h1>
+					</md-card-title-text>
+				</md-card-title>
+				<md-card-content>
+					<p>{{card.content}}</p>
+				</md-card-content>
+			</md-card>
+		</div>
 	</div>
-	<div layout="column" layout-align="center center" flex>
-		<p>more content here explaining the site and usage instructions</p>
-		<p>show some example recipes? screenshots?</p>
+	<md-divider></md-divider>
+	<div id="how-works" layout="column" layout-align="center center">
+		<p>Feel free to look at recipes and get inspired!</p>
+		<p>You must sign up to add recipes to your recipe box.</p>
 	</div>
-	<div layout="column" layout-align="center center" flex>
+	<md-divider></md-divider>
+	<div layout="column" layout-align="center center">
 		<p>have a toolbar on the bottom that maybe pops up and shows that i made it</p>
 	</div>
 </md-content>

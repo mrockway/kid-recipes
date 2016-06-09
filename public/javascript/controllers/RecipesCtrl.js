@@ -73,6 +73,7 @@ app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) 
 //////////////////////////////
 
 app.controller("SingleRecipeCtrl", ['$scope', '$routeParams','Recipe', function($scope, $routeParams, Recipe) {
+
 	// Get recipe ID from the URL
 	var recipeId = $routeParams.recipeId; // just declare and use ng-click to assign ID when selecting a recipe????
 
@@ -81,6 +82,10 @@ app.controller("SingleRecipeCtrl", ['$scope', '$routeParams','Recipe', function(
 	$scope.foundRecipe = Recipe.get({ id: recipeId }, function() {
 		// displays recipe
 	});
+
+	$scope.toggleForm = function() {
+		$scope.editForm = !$scope.editForm;
+	};
 
 	// Edit recipe function
 	$scope.updateRecipe = function() {
@@ -96,8 +101,11 @@ app.controller("SingleRecipeCtrl", ['$scope', '$routeParams','Recipe', function(
 
 	// Does not remove recipe from DB only marks as inactive
 	$scope.removeRecipe = function() {
-		$scope.foundRecipe.active = false;
-		Recipe.update($scope.foundRecipe);
+		var deleteRecipe = confirm("Are you sure you want to delete");
+		if (deleteRecipe) {
+			$scope.foundRecipe.active = false;
+			Recipe.update($scope.foundRecipe);	
+		}
 	};
 
 }]);
