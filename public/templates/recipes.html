@@ -1,6 +1,6 @@
-<div ng-controller="RecipesCtrl" layout="column" flex layout-margin>
-	<div ng-controller="ViewRecipesCtrl" layout="column" flex>
-		<md-content flex layout="column">
+<div ng-controller="RecipesCtrl" layout="column" layout-margin ng-cloak>
+	<div ng-controller="ViewRecipesCtrl" layout="column">
+		<md-content layout="column">
 			<div layout="row" layout-align="center center">
 					<h1 class="capitalize"><span ng-show="currentUser"> {{currentUser.firstName}},</span> what should we eat today?</h1>
 			</div>
@@ -9,34 +9,31 @@
 				<span ng-model="recipeCollection">{{recipeCollection}}</span>
 			</md-switch>
 			<div layout="row" layout-align="center center">
-				<md-button class="md-raised recipe-btn" ng-hide="mealType == '' " ng-click= "mealType = '' " flex>See All Your Recipes</md-button>
+				<md-button class="md-raised recipe-btn" ng-hide="mealType == '' " ng-click= "mealType = '' ">See All Your Recipes</md-button>
 			</div>
 			<!-- End buttons to show all recipes and just user recipes -->
 			<div layout="row">
-				<md-button ng-repeat="meal in meals" class="md-raised recipe-btn meal-btn" flex ng-click="$parent.mealType = meal">{{meal}}</md-button>
+				<md-button ng-repeat="meal in meals" class="md-raised recipe-btn meal-btn" ng-click="$parent.mealType = meal">{{meal}}</md-button>
 			</div>
 			<div layout="row" layout-align="center center">
 				<p class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
 			</div>
-			<div layout="row" layout-padding flex>
-				<md-input-container layout="column" flex>
+			<div layout="row" layout-padding>
+				<md-input-container layout="column">
 					<label>Search Recipes</label>
 					<input type="text" ng-model="keyword">
 				</md-input-container>
 			</div>
-			<div layout="row" layout-wrap>
+			<div layout="row">
 				<md-card ng-repeat="recipe in recipes | filter: userSelection | filter : mealType | filter : keyword">
-				
-					<md-card-header>
-						<md-card-header-text class="md-caption capitalize">Posted by: {{recipe.user.firstName}}</md-card-header-text>
-					</md-card-header>
 					<a href="/recipes/{{recipe._id}}">
+						<md-card-header>
+							<md-card-header-text class="md-caption capitalize">Posted by: {{recipe.user.firstName}}</md-card-header-text>
+						</md-card-header>
 						<md-card-title>
 							<md-card-title-text class="capitalize">{{recipe.name}}</md-card-title-text>
 						</md-card-title>
-						<md-card-content>
-							<p>Ingredients: {{recipe.ingredients.length}}</p>
-						</md-card-content>
+						<md-card-content><p>Ingredients: {{recipe.ingredients.length}}</p></md-card-content>
 					</a>
 				</md-card>
 				<md-button class="md-raised" href="/newrecipe"><md-icon class="material-icons">add_circle_outline</md-icon><br>Add Recipe</md-button>

@@ -1,7 +1,7 @@
-<div layout="column" flex layout-margin ng-controller="RecipesCtrl">
+<div layout="column" flex layout-margin ng-controller="RecipesCtrl" ng-cloak>
 	<div layout="column" flex ng-controller="SingleRecipeCtrl">
 	<md-content>
-		<div layout="row" class="individual-recipe" ng-hide="editForm">
+		<div layout="row" class="individual-recipe">
 			<md-button class="md-raised recipe-btn" href="/recipes">All Recipes</md-button>
 		</div>
 		<div layout="column">
@@ -10,16 +10,16 @@
 			<ul ng-repeat="ingredients in foundRecipe.ingredients">
 				<li>{{ingredients}}</li>
 			</ul>
-			<p ng-if="foundRecipe.comment !== ''">Special Instructions: {{foundRecipe.comment}}</p>
-			<div layout="row" ng-if="currentUser._id == recipe.user._id">
-				<md-button class="md-raised recipe-btn" ng-hide="editForm" ng-click="editForm = !editForm"><md-icon class="material-icons">edit</md-icon>Edit</md-button>
-				<md-button class="md-raised recipe-btn" ng-hide="editForm" ng-click="removeRecipe()"><md-icon class="material-icons">delete</md-icon>Remove</md-button>
+			<p ng-if="foundRecipe.comment.length">Special Instructions: {{foundRecipe.comment}}</p>
+			<div layout="row" ng-if="currentUser._id == foundRecipe.user" ng-hide="editForm">
+				<md-button class="md-raised recipe-btn" ng-click="toggleForm()"><md-icon class="material-icons">edit</md-icon>Edit</md-button>
+				<md-button class="md-raised recipe-btn" ng-click="removeRecipe()"><md-icon class="material-icons">delete</md-icon>Remove</md-button>
 			</div>
 		</div>
 		<hr>
 		<div class="edit-form" ng-show="editForm" layout="column">
 			<div layout="row">
-				<md-button class="md-raised recipe-btn" ng-show="editForm" ng-click="editForm = !editForm">Cancel</md-button>
+				<md-button class="md-raised recipe-btn" ng-click="toggleForm()">Cancel</md-button>
 			</div>
 			<br>
 			<div layout="row">
@@ -54,13 +54,13 @@
 							<input type="text" ng-model="foundRecipe.comment">
 						</md-input-container>
 						<md-input-container>
-							<md-button class="md-raised recipe-btn" type="submit" ng-click="editForm = !editForm">Update Recipe</md-button>
+							<md-button class="md-raised recipe-btn" type="submit">Update Recipe</md-button>
 						</md-input-container>
 					</div>
 				</form>
 				</div>
 		</div>
-		<div ng-hide="editForm">
+		<div>
 			<md-button class="md-raised" href="/newrecipe"><md-icon class="material-icons">add_circle_outline</md-icon><br>Add Recipe</md-button>
 		</div>
 		</md-content>

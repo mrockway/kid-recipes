@@ -3,20 +3,30 @@ body {
 	font-family: 'Acme', sans-serif;
 }
 
-#splash {
-	background-image: url('../images/muffin.jpg');
+#mobile-menu {
+	left: inherit !important;
+	top: 0;
+}
+
+#welcome-page {
+	background-image: url('https://s3-us-west-2.amazonaws.com/kid-recipes/muffin.jpg');
 	background-repeat: no-repeat;
+	position: static;
 	background-size: cover;
-	color: #FFFFFF;
+}
+
+.main-card {
+	color: #000000;
 }
 
 .headline {
 	font-size: 3em;
 }
 
-#about-site {
-	background-color: rgba(52,52,52,0.5);
+#intro-site {
+	color: #FFFFFF;
 }
+
 
 .recipe-btn {
 	background-color: #A6537A;
@@ -38,7 +48,7 @@ body {
 }
 
 .meal-btn {
-	margin-bottom: 5%;;
+	margin-bottom: 5%;
 	width: 100%;
 }
 
@@ -62,4 +72,8 @@ body {
 
 .capitalize {
 	text-transform: capitalize;
+}
+
+.all-caps {
+ 	text-transform: uppercase;
 }
