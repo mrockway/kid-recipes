@@ -1,9 +1,10 @@
 <md-content layout="column" id="welcome-page" layout-fill ng-cloak>
-	<div id="intro-site" layout="column" layout-align="center center">
-		<h1 class="headline" layout>Don't let your kids get tired of having the same meal every day.</h1>
-		<h1 class="headline" layout>Get ideas and keep your recipes organized.</h1>
-		<div layout="row">
-			<md-card ng-repeat="card in cardInfo" flex="33" class="main-card" layout-align="center center">
+	<div id="intro-site" layout="column" layout-align="center center" layout-padding>
+		<h1 class="headline">Recipe Box</h1>
+		<h1 class="headline" layout="row">Don't let your kids get tired of having the same meal every day.</h1>
+		<h1 class="headline" layout="row">Get ideas and keep your recipes organized.</h1>
+		<div layout="column" layout-gt-sm="row">
+			<md-card ng-repeat="card in cardInfo" flex-gt-sm="33" flex="100" class="main-card" layout-align="center center">
 				<md-card-title>
 					<md-card-title-text class="capitalize">
 						<h1 layout="row">{{card.title}}</h1>
