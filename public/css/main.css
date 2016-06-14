@@ -1,5 +1,5 @@
 body {
-background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/restaurant.png');
+	background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/restaurant.png');
 	font-family: 'Acme', sans-serif;
 }
 
@@ -12,13 +12,6 @@ md-content {
 #mobile-menu {
 	left: inherit !important;
 	top: 0;
-}
-
-#welcome-page {
-	background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/restaurant.png');
-	background-repeat: no-repeat;
-	position: static;
-	background-size: cover;
 }
 
 .main-card {
