@@ -1,6 +1,12 @@
 body {
-	background-color: #FFF8E1;
+background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/restaurant.png');
 	font-family: 'Acme', sans-serif;
+}
+
+md-content {
+	background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/restaurant.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 #mobile-menu {
