@@ -24,7 +24,7 @@ app.set('view engine', 'hbs');
 // connect to mongodb
 mongoose.connect(
 	process.env.MONGOLAB_URI ||
-	process.env.MONGOHQ_URL ||
+  process.env.MONGOHQ_URL ||
 	'mongodb://localhost/kids_recipes'
 );
 
