@@ -1,12 +1,13 @@
-<form ng-submit="addRecipe()" flex-offset="25" flex="50">
-	<div layout="column">
-		<div class="checkbox">
-			<span>Meals:&nbsp;&nbsp;</span>
+<form ng-submit="addRecipe()" flex-offset-gt-xs="25" flex-gt-xs="50">
+	<div layout="column" layout-xs="column">
+		<div class="checkbox" layout-xs="row" layout-wrap>
+			<span flex="100">Meals:&nbsp;&nbsp;</span>
 			<md-checkbox
 				ng-repeat="meal in meals"
 				class="capitalize"
 				ng-checked="exists(meal, recipe.mealType)" 
-				ng-click="toggle(meal, recipe.mealType)">
+				ng-click="toggle(meal, recipe.mealType)"
+				flex="40">
 					{{meal}}
 			</md-checkbox>
 		</div>
@@ -14,8 +15,8 @@
 			<label>Recipe name</label>
 			<input type="text" ng-model="recipe.name">
 		</md-input-container>
-		<div layout="row">	
-			<p>Enter Ingredients</p>
+		<div layout="row" layout-xs="column" layout-wrap>	
+			<p flex="100">Enter Ingredients:</p>
 			<md-input-container	ng-repeat="ingredient in recipe.ingredients track by $index">
 				<label>Ingredient {{$index + 1}}</label>
 				<input type="text" ng-model="recipe.ingredients[$index]">

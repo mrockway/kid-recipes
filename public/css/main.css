@@ -1,6 +1,12 @@
 body {
-	background-color: #FFF8E1;
+background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/restaurant.png');
 	font-family: 'Acme', sans-serif;
+}
+
+md-content {
+	background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/restaurant.png');
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 #mobile-menu {
@@ -9,7 +15,7 @@ body {
 }
 
 #welcome-page {
-	background-image: url('https://s3-us-west-2.amazonaws.com/kid-recipes/muffin.jpg');
+	background-image: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/restaurant.png');
 	background-repeat: no-repeat;
 	position: static;
 	background-size: cover;
@@ -20,7 +26,7 @@ body {
 }
 
 .headline {
-	font-size: 3em;
+	font-size: 2em;
 }
 
 #intro-site {
