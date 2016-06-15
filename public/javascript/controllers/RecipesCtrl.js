@@ -42,9 +42,6 @@ app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) 
 	if ($scope.currentUser) {
 		$scope.recipes = Recipe.query({userID: $scope.currentUser._id, active: false},function() {
 			console.log('recipes query',$scope.recipes);
-			// add logic to show only logged in user recipes, unless no user logged in then show all
-			//$scope.userID = $scope.currentUser._id;
-
 		});
 	} else if(!personalRecipes) {
 		$scope.recipes = Recipe.query({active: true},function() {
@@ -65,6 +62,15 @@ app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) 
 		personalRecipes = !personalRecipes;
 	};
 	
+	$scope.recipeClass = function(recipeUserId) {
+		if ($scope.currentUser._id !== recipeUserId) {
+			console.log('community');
+			return "community";
+		} else {
+			console.log('mine');
+			return "mine";
+		}
+	};
 
 }]);
 	

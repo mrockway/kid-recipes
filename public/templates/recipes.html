@@ -4,41 +4,43 @@
 			<div layout="row" layout-align="center center">
 					<h1 class="capitalize"><span ng-show="currentUser"> {{currentUser.firstName}},</span> what should we eat today?</h1>
 			</div>
-			<!-- Buttons to show all recipes and just user recipes -->
 			<div layout="column">
-				<md-switch class="md-primary" ng-model="personalRecipes" ng-change="recipeListChange(personalRecipes)">
+				<md-switch class="md-warn" ng-model="personalRecipes" ng-change="recipeListChange(personalRecipes)">
 					<span ng-model="recipeCollection">{{recipeCollection}}</span>
 				</md-switch>
 			</div>
 			<div layout="row" layout-align="center center">
-				<md-button class="md-raised recipe-btn" ng-hide="mealType == '' " ng-click= "mealType = '' ">Clear filters</md-button>
+				<md-button class="md-warn md-raised" ng-hide="mealType == '' " ng-click= "mealType = '' ">Clear filter</md-button>
 			</div>
-			<!-- End buttons to show all recipes and just user recipes -->
 			<div layout="row" layout-align="space-around center" layout-wrap>
-				<md-button flex-xs="40" flex ng-repeat="meal in meals" class="md-raised recipe-btn meal-btn" ng-click="$parent.mealType = meal">{{meal}}</md-button>
+				<md-button flex-xs="40" flex ng-repeat="meal in meals" class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
+			</div>
+			<br>
+			<div layout="row" layout-xs="column">
+				<md-input-container class="md-accent" layout="column" flex-sm="50" flex-gt-sm="33">
+					<label>Search Recipes</label>
+					<input type="text" ng-model="keyword">
+				</md-input-container>
 			</div>
 			<br>
 			<div layout="row" layout-xs="column" layout-align="center center">
 				<p class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
 			</div>
-			<div layout="row" layout-xs="column">
-				<md-input-container layout="column">
-					<label>Search Recipes</label>
-					<input type="text" ng-model="keyword">
-				</md-input-container>
-			</div>
 			<div layout="row" layout-align="space-around center" layout-wrap>
-				<md-card flex-xs="40" ng-repeat="recipe in recipes | filter: userSelection | filter : mealType | filter : keyword">
+				<md-card flex-xs="40" flex="30" ng-repeat="recipe in recipes | filter: userSelection | filter : mealType | filter : keyword" ng-class="recipeClass(recipe.user._id)">
 					<a href="/recipes/{{recipe._id}}">
-						<md-card-header ng-if="$parent.currentUser._id !== recipe.user._id">
-							<md-card-header-text class="md-caption capitalize">Chef: {{recipe.user.firstName}}</md-card-header-text>
-						</md-card-header>
 						<md-card-title>
 							<md-card-title-text class="capitalize">{{recipe.name}}</md-card-title-text>
 						</md-card-title>
 					</a>
 				</md-card>
-				<md-button flex-xs="40" class="md-raised" href="/newrecipe"><md-icon class="material-icons">add_circle_outline</md-icon><br>Add Recipe</md-button>
+				<md-card flex-xs="40" flex="30">
+					<a href="/newrecipe">
+						<md-card-title>
+							<md-card-title-text>Add Recipe</md-card-title-text>
+						</md-card-title>
+					</a>
+				</md-card>
 			</div>
 		</md-content>
 	</div>

@@ -1,9 +1,5 @@
 var app = angular.module('kidsFood', 
-	['ngRoute',
-	 'ngMaterial',
-	 'ngResource',
-	 'satellizer'
-	 ]
+	['ngRoute', 'ngMaterial', 'ngResource', 'satellizer']
 );
 
 /////////////
@@ -17,3 +13,16 @@ app.factory('Recipe', ['$resource', function($resource) {
 		'update': { method:'PUT' }
 	});
 }]);
+
+
+////////////////////
+// Material Theme //
+////////////////////
+
+app.config(function($mdThemingProvider){
+	$mdThemingProvider.theme('main')
+		.primaryPalette('green')
+		.accentPalette('deep-purple')
+		.warnPalette('deep-orange')
+		.backgroundPalette('grey');
+});

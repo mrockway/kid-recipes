@@ -20,9 +20,8 @@ angular.module('kidsFood')
 		$auth.logout().then(function() {
 			// Set current user to null
 			$scope.currentUser = null;
-			// Redirect to login page
-			$location.path('/login');
-
+			// Redirect to home page
+			$location.path('/');
 		});
 	};
 
@@ -40,14 +39,10 @@ angular.module('kidsFood')
 		$mdBottomSheet.hide({});
 	};
 
-
 	$scope.cardInfo = [{title: 'Create', content: 'Create and store your recipes online and bring them with you everywhere you go.'},
 										 {title: 'Discover', content:'Get ideas from other members to try out with your own family'},
 										 {title: 'Share', content: 'Share your recipes with other members or keep them all to yourself.'}
 										];
-
-
-
 
 }]);
 
