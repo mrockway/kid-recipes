@@ -66,9 +66,6 @@ app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) 
 		if ($scope.currentUser._id !== recipeUserId) {
 			console.log('community');
 			return "community";
-		} else {
-			console.log('mine');
-			return "mine";
 		}
 	};
 
