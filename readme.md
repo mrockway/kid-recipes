@@ -7,10 +7,9 @@ Angular app for recipe organization.
  - Angular-Material
  - Node/Express
  - MongoDB
- - Satellizer
- - bCrypt
 
 ##Features/Improvements
+ - Add user auth
  - Improve styling with Angular Material
  - Improve responsive design
  - Pulling recipes from external API??
