@@ -34,10 +34,26 @@ var User = require('./models/user');
 
 app.get('/api/me', auth.ensureAuthenticated, function(req,res) {
 	User.findById(req.user, function (err, user) {
-		res.send(user);
+		if(err) {
+			res.send('No user');
+		} 
+			res.send(user);
 	});
 });
 
+app.put('/api/me', auth.ensureAuthenticated, function(req,res) {
+	User.findById(req.user, function(err,user) {
+		if (!user) {
+			return res.status(400).send({message: 'User not found' });
+		}
+		user.email = req.body.email || user.email;
+		user.firstName = req.body.firstName || user.firstName;
+		user.lastName = req.body.lastName || user.lastName;
+		user.save(function(err) {
+			res.status(200).end();
+		});
+	});
+});
 
 // Query & return all active recipes from database
 app.get('/api/recipes', function (req,res) {
@@ -100,7 +116,6 @@ app.delete('/api/recipes/:id', function(req,res) {
 });
 
 app.post('/auth/signup', function(req,res) {
-	console.log('form signup');
 	User.findOne({email: req.body.email }, function(err, existingUser) {
 		if (existingUser) { 
 			return res.status(409).send({message: 'Email is already taken.'}); 
@@ -123,9 +138,8 @@ app.post('/auth/signup', function(req,res) {
 				user.save(function(err, result) {
 					if (err) {
 						res.status(500).send({ message: err.message });
-					} else {
+					} 
 						res.send({ token: auth.createJWT(result) });
-					}
 				});
 			});
 		});
@@ -135,7 +149,6 @@ app.post('/auth/signup', function(req,res) {
 app.post('/auth/login', function(req,res) {
 	User.findOne({email: req.body.email }, function(err, user) {
 		if (!user) {
-			console.log('no user');
 			res.status(401).send({message: 'Incorrect username or password.'});
 		} 
 		
@@ -143,7 +156,7 @@ app.post('/auth/login', function(req,res) {
 			if (!isMatch) {
 				return res.status(401).send({message: 'Incorrect username or password.'});	
 			}
-			res.send({token: auth.createJWT(user) });
+			res.send({ token: auth.createJWT(user) });
 		});
 
 	});

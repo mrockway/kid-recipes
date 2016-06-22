@@ -4,9 +4,9 @@
 			<div layout="row" layout-align="center center">
 					<h1 class="capitalize"><span ng-show="currentUser"> {{currentUser.firstName}},</span> what should we eat today?</h1>
 			</div>
-			<div layout="column">
-				<md-switch class="md-warn" ng-model="personalRecipes" ng-change="recipeListChange(personalRecipes)">
-					<span ng-model="recipeCollection">{{recipeCollection}}</span>
+			<div layout="column" >
+				<md-switch class="md-warn" ng-model="switch" ng-change="onChange(switch)">
+					{{recipeGroupType}}
 				</md-switch>
 			</div>
 			<div layout="row" layout-align="center center">
@@ -30,7 +30,7 @@
 				<md-card flex-xs="40" flex="30" ng-repeat="recipe in recipes | filter: userSelection | filter : mealType | filter : keyword" ng-class="recipeClass(recipe.user._id)">
 					<a href="/recipes/{{recipe._id}}">
 						<md-card-title>
-							<md-card-title-text class="capitalize">{{recipe.name}}</md-card-title-text>
+							<md-card-title-text class="capitalize" layout="row" title="{{recipe.name}}">{{recipe.name | limitTo: 20 }}<span ng-if="recipe.name.length > 20">...</span></md-card-title-text>
 						</md-card-title>
 					</a>
 				</md-card>

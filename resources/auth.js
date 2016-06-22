@@ -5,10 +5,10 @@ module.exports = {
 // Login Required Middleware  
 
   ensureAuthenticated: function(req, res, next) {
-    if (!req.header('Authorization')) {
+    if (!req.header.authorization) {
       return res.status(401).send({ message: 'Please make sure your request has an Authorization header' });
     }
-    var token = req.header('Authorization').split(' ')[1];
+    var token = req.header.authorization.split(' ')[1];
     var payload = null;
 
     try {

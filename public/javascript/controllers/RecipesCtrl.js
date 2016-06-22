@@ -34,39 +34,44 @@ app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) 
 
 	// Declare initial variables for Recipes page
 	$scope.mealType = '';
-	$scope.personalRecipes = true;
-	$scope.recipeCollection = "See only my recipes";
-	$scope.userSelection = $scope.currentUser._id || '';
-
-	// Get all recipes from the database
-	if ($scope.currentUser) {
-		$scope.recipes = Recipe.query({userID: $scope.currentUser._id, active: false},function() {
-			console.log('recipes query',$scope.recipes);
-		});
-	} else if(!personalRecipes) {
-		$scope.recipes = Recipe.query({active: true},function() {
-		console.log('recipes query',$scope.recipes);
-
-	});
-	}
-
-	// Toggle switch function to change the recipes displayed on the page
-	$scope.recipeListChange = function(personalRecipes) {
-		if (personalRecipes) {
-			$scope.recipeCollection = "See only my recipes";
-			$scope.userSelection = $scope.currentUser._id;
-		} else {
-			$scope.recipeCollection = "Browse the community";
-			$scope.userSelection = '';
-		}
-		personalRecipes = !personalRecipes;
-	};
 	
-	$scope.recipeClass = function(recipeUserId) {
-		if ($scope.currentUser._id !== recipeUserId) {
-			console.log('community');
-			return "community";
+	$scope.userSelection = function(){
+		if($scope.currentUser) {
+			return $scope.currentUser._id;
+		} else {
+			return '';
 		}
+	};
+
+	$scope.recipeGroupType = 'My recipes';
+
+	$scope.recipes = Recipe.query({active: true}, function() {
+		console.log('all recipe query', $scope.recipes);
+	});
+
+	$scope.onChange = function(bool) {
+		if(bool) {
+			$scope.recipeGroupType = 'Community recipes';
+			recipeFilter(bool);
+		} 
+		else {
+			$scope.recipeGroupType = 'My recipes';
+			recipeFilter(bool);
+		}
+	};
+
+	function recipeFilter(bool) {
+		if($scope.currentUser && !bool) {
+			$scope.userSelection = $scope.currentUser._id;
+		}
+		else {
+			$scope.userSelection = '';
+		}	
+	}
+	$scope.recipeClass = function(recipeUserId) {
+		if (!$scope.currentUser || $scope.currentUser._id !== recipeUserId ) {
+			return "community";
+		} 
 	};
 
 }]);
