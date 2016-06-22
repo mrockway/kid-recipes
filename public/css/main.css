@@ -55,10 +55,6 @@ body {
 	margin: 0;
 }
 
-.community {
-	background: #3EE660 !important;
-}
-
 /* End Recipes CSS */
 
 
@@ -67,10 +63,6 @@ body {
 .panel-heading {
 	background-color: #A6537A !important;
 	color: #FFF !important;
-}
-
-.signup-form {
-	padding: 0;
 }
 
 .capitalize {

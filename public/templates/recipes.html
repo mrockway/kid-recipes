@@ -2,18 +2,15 @@
 	<div ng-controller="ViewRecipesCtrl" layout="column" layout-padding>
 		<md-content layout="column">
 			<div layout="row" layout-align="center center">
-					<h1 class="capitalize"><span ng-show="currentUser"> {{currentUser.firstName}},</span> what should we eat today?</h1>
-			</div>
-			<div layout="column">
-				<md-switch class="md-warn" ng-model="personalRecipes" ng-change="recipeListChange(personalRecipes)">
-					<span ng-model="recipeCollection">{{recipeCollection}}</span>
-				</md-switch>
+					<h1>What should we eat today?</h1>
 			</div>
 			<div layout="row" layout-align="center center">
 				<md-button class="md-warn md-raised" ng-hide="mealType == '' " ng-click= "mealType = '' ">Clear filter</md-button>
 			</div>
 			<div layout="row" layout-align="space-around center" layout-wrap>
-				<md-button flex-xs="40" flex ng-repeat="meal in meals" class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
+				<div ng-repeat="meal in meals" flex flex-xs="40" layout="column">
+					<md-button class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
+				</div>
 			</div>
 			<br>
 			<div layout="row" layout-xs="column">
@@ -27,7 +24,7 @@
 				<p class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
 			</div>
 			<div layout="row" layout-align="space-around center" layout-wrap>
-				<md-card flex-xs="40" flex="30" ng-repeat="recipe in recipes | filter: userSelection | filter : mealType | filter : keyword" ng-class="recipeClass(recipe.user._id)">
+				<md-card flex-xs="40" flex="30" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
 					<a href="/recipes/{{recipe._id}}">
 						<md-card-title>
 							<md-card-title-text class="capitalize">{{recipe.name}}</md-card-title-text>

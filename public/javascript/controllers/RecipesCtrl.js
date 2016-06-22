@@ -34,40 +34,11 @@ app.controller("ViewRecipesCtrl", ['$scope', 'Recipe', function($scope, Recipe) 
 
 	// Declare initial variables for Recipes page
 	$scope.mealType = '';
-	$scope.personalRecipes = true;
-	$scope.recipeCollection = "See only my recipes";
-	$scope.userSelection = $scope.currentUser._id || '';
 
 	// Get all recipes from the database
-	if ($scope.currentUser) {
-		$scope.recipes = Recipe.query({userID: $scope.currentUser._id, active: false},function() {
-			console.log('recipes query',$scope.recipes);
-		});
-	} else if(!personalRecipes) {
-		$scope.recipes = Recipe.query({active: true},function() {
-		console.log('recipes query',$scope.recipes);
-
+	Recipe.query({active: true},function(response) {
+		$scope.recipes = response;
 	});
-	}
-
-	// Toggle switch function to change the recipes displayed on the page
-	$scope.recipeListChange = function(personalRecipes) {
-		if (personalRecipes) {
-			$scope.recipeCollection = "See only my recipes";
-			$scope.userSelection = $scope.currentUser._id;
-		} else {
-			$scope.recipeCollection = "Browse the community";
-			$scope.userSelection = '';
-		}
-		personalRecipes = !personalRecipes;
-	};
-	
-	$scope.recipeClass = function(recipeUserId) {
-		if ($scope.currentUser._id !== recipeUserId) {
-			console.log('community');
-			return "community";
-		}
-	};
 
 }]);
 	
@@ -117,7 +88,7 @@ app.controller("SingleRecipeCtrl", ['$scope', '$routeParams','Recipe', function(
 // New Recipe Controller //
 ///////////////////////////
 
-app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
+app.controller("NewRecipeCtrl", ['$scope', '$location', 'Recipe', function($scope, $location, Recipe) {
 	function blankRecipe() {
 		$scope.recipe = {
 			active: true,
@@ -141,11 +112,12 @@ app.controller("NewRecipeCtrl", ['$scope', 'Recipe', function($scope, Recipe) {
 
 		Recipe.save($scope.recipe, function (response) {
 			console.log('success save',response);
-		}, function(err) {
-			console.log('You must be logged in',err);
 		});
 
+		
 		blankRecipe();
+
+		$location.url('/recipes');
 		
 	};
 

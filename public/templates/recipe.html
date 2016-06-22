@@ -11,7 +11,7 @@
 					<li>{{ingredients}}</li>
 				</ul>
 				<p ng-if="foundRecipe.comment.length">Comments: {{foundRecipe.comment}}</p>
-				<div layout="row" layout-align="space-between center" ng-if="currentUser._id == foundRecipe.user" ng-hide="editForm">
+				<div layout="row" layout-align="space-between center" ng-hide="editForm">
 					<md-button flex="45" class="md-raised recipe-btn" ng-click="toggleForm()"><md-icon class="material-icons">edit</md-icon>Edit</md-button>
 					<md-button flex="45" class="md-raised recipe-btn" ng-click="removeRecipe()"><md-icon class="material-icons">delete</md-icon>Remove</md-button>
 				</div>
