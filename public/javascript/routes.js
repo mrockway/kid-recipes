@@ -13,12 +13,6 @@ angular.module("kidsFood")
 			.when('/recipes/:recipeId', {
 				templateUrl: 'templates/recipe.html'
 			})
-			.when('/signup', {
-				templateUrl: 'templates/signup.html'
-			})
-			.when('/login', {
-				templateUrl: 'templates/login.html'
-			})
 			.otherwise({
 				redirectTo: '/'
 			});

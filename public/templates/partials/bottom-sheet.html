@@ -4,18 +4,8 @@
 		<md-list-item>
 			<md-button ng-click="mobileMenuClick()" class="md-list-item-content" ng-href="/recipes">See Recipes</md-button>	
 		</md-list-item>
-		<div ng-if="currentUser">
 		<md-list-item>
 			<md-button ng-click="mobileMenuClick()" class="md-list-item-content" ng-href="/newrecipe">Add Recipe</md-button>
-		</md-list-item>
-		<md-list-item>
-			<md-button ng-click="mobileMenuClick(logout)" class="md-list-item-content" ng-href="#">Logout</md-button>
-		</md-list-item>
-		<md-list-item ng-if="!currentUser">
-			<md-button ng-click="mobileMenuClick()" class="md-list-item-content" ng-href="/signup">Sign-up</md-button>
-		</md-list-item>
-		<md-list-item ng-if="!currentUser">
-			<md-button ng-click="mobileMenuClick()" class="md-list-item-content" ng-href="/login">Login</md-button>
 		</md-list-item>
 	</md-list>
 </md-bottom-sheet>

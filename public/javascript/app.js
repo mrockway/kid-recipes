@@ -1,5 +1,5 @@
 var app = angular.module('kidsFood', 
-	['ngRoute', 'ngMaterial', 'ngResource', 'satellizer']
+	['ngRoute', 'ngMaterial', 'ngResource']
 );
 
 /////////////
