@@ -23,11 +23,11 @@
 			<div layout="row" layout-xs="column" layout-align="center center">
 				<p class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
 			</div>
-			<div layout="row" layout-align="space-around center" layout-wrap>
+			<div layout="row" layout-wrap>
 				<md-card flex-xs="40" flex="30" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
 					<a href="/recipes/{{recipe._id}}">
 						<md-card-title>
-							<md-card-title-text class="capitalize">{{recipe.name}}</md-card-title-text>
+							<md-card-title-text layout="row" class="capitalize">{{recipe.name | limitTo: 15 }}<span ng-if="recipe.name.length > 15">...</span></md-card-title-text>
 						</md-card-title>
 					</a>
 				</md-card>
