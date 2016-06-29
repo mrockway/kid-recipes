@@ -1,10 +1,10 @@
 angular.module('kidsFood')
-.controller("MainCtrl", ['$scope', '$http', '$mdBottomSheet', function($scope, $http, $mdBottomSheet){
+.controller("HeaderCtrl", ['$mdBottomSheet', function($mdBottomSheet){
 
 	$scope.showMobileMenu = function() {
 		$mdBottomSheet.show({
 			templateUrl: './templates/partials/bottom-sheet.html',
-			controller: 'MainCtrl'
+			controller: 'HeaderCtrl'
 		});
 	};
 }]);
