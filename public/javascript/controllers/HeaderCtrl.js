@@ -1,5 +1,5 @@
 angular.module('kidsFood')
-.controller("HeaderCtrl", ['$mdBottomSheet', function($mdBottomSheet){
+.controller("HeaderCtrl", ['$scope','$mdBottomSheet', function($scope,$mdBottomSheet){
 
 	$scope.showMobileMenu = function() {
 		$mdBottomSheet.show({
