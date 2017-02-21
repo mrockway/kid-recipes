@@ -11,7 +11,7 @@
         <div ng-repeat="meal in meals" flex flex-xs="40" layout="column">
           <md-button class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
         </div>
-        <a href="/newrecipe"><md-button class="md-primary md-raised">Add Recipe</md-button></a>
+        <a flex="45" href="/newrecipe" layout="column"><md-button class="md-primary md-raised">Add Recipe</md-button></a>
       </div>
       <br>
       <div layout="row" layout-xs="column">
