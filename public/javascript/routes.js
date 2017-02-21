@@ -4,9 +4,6 @@ angular.module("kidsFood")
       .when('/', {
         templateUrl: 'templates/recipes.html'
       })
-      .when('/recipes', {
-        templateUrl: 'templates/recipes.html'
-      })
       .when('/newrecipe', {
         templateUrl: 'templates/newrecipe.html'
       })
