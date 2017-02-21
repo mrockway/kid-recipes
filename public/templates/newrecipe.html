@@ -1,12 +1,12 @@
 <div ng-controller="RecipesCtrl" layout="column" flex layout-margin>
-	<div ng-controller="NewRecipeCtrl" layout="column">
-		<md-content flex layout="column">
-			<div layout="row" layout-align="center center">
-				<md-button href="/recipes" class="md-raised md-primary">Back to recipes</md-button>
-			</div>
-			<br>
-			<!-- Recipe Form Snippet -->
-			<div layout="row" ng-include="'/templates/partials/recipe-form.html'"></div>
-		</md-content>
-	</div>
+  <div ng-controller="NewRecipeCtrl" layout="column">
+    <md-content flex layout="column">
+      <div layout="row" layout-align="center center">
+        <md-button href="/recipes" class="md-raised md-primary">Back to recipes</md-button>
+      </div>
+      <br>
+      <!-- Recipe Form Snippet -->
+      <div layout="row" ng-include="'/templates/partials/recipe-form.html'"></div>
+    </md-content>
+  </div>
 </div>

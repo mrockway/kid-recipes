@@ -1,74 +1,48 @@
 body {
-	font-family: 'Acme', sans-serif;
+  font-family: 'Acme', sans-serif;
 }
-
-/* Nav Bar CSS */
-#mobile-menu {
-	left: inherit !important;
-	top: 0;
-}
-
-#nav-bar {
-	box-shadow: 2px 1px 4px 1px rgba(10, 10, 0, 0.5);
-}
-
-.nav-btn {
-	border-radius: 15px 5px 15px 5px;
-	color: #FFF;
-}
-/* End Nav Bar CSS */
 
 /* Landing Page CSS */
 .stitched {
-	border: 2px dashed #FFF;
-	box-shadow: 0 0 0 4px #43A047, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
-	margin: 10px;
-	padding: 5px 30px;
+  border: 2px dashed #FFF;
+  box-shadow: 0 0 0 4px #43A047, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+  margin: 10px;
+  padding: 5px 30px;
 }
 
 #site-title {
-	background: #43A047;
-	border-radius: 15px 5px;
-	color: #FFF;
-	font-size: 2em;
-	text-align: center;
+  background: #43A047;
+  border-radius: 15px 5px;
+  color: #FFF;
+  font-size: 2em;
+  text-align: center;
 }
 
 .headline {
-	color: rgba(0,0,0,0.87);
-	font-size: 1.5em;
+  color: rgba(0,0,0,0.87);
+  font-size: 1.5em;
 }
 
 .informational-card {
-	background: #43A047;
-	border-radius: 25px 10px;
-	color: #FFF;
-	text-align: center;
+  background: #43A047;
+  border-radius: 25px 10px;
+  color: #FFF;
+  text-align: center;
 }
 
 /* End Landing Page CSS */
 
-/* Recipes CSS */
-
-.recipe-list-headline {
-	font-size: 1.5em;
-	margin: 0;
-}
-
-/* End Recipes CSS */
-
-
 /* CSS to go through or combine into one class */
 
 .panel-heading {
-	background-color: #A6537A !important;
-	color: #FFF !important;
+  background-color: #A6537A !important;
+  color: #FFF !important;
 }
 
 .capitalize {
-	text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .all-caps {
- 	text-transform: uppercase;
+  text-transform: uppercase;
 }

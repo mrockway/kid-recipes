@@ -1,5 +1,5 @@
 var app = angular.module('kidsFood', 
-	['ngRoute', 'ngMaterial', 'ngResource']
+  ['ngRoute', 'ngMaterial', 'ngResource']
 );
 
 /////////////
@@ -8,10 +8,10 @@ var app = angular.module('kidsFood',
 
 // Create recipe CRUD routes
 app.factory('Recipe', ['$resource', function($resource) {
-	return $resource('/api/recipes/:id', { id: '@_id' },
-	{ 
-		'update': { method:'PUT' }
-	});
+  return $resource('/api/recipes/:id', { id: '@_id' },
+  { 
+    'update': { method:'PUT' }
+  });
 }]);
 
 
@@ -20,9 +20,9 @@ app.factory('Recipe', ['$resource', function($resource) {
 ////////////////////
 
 app.config(function($mdThemingProvider){
-	$mdThemingProvider.theme('main')
-		.primaryPalette('green')
-		.accentPalette('deep-purple')
-		.warnPalette('deep-orange')
-		.backgroundPalette('grey');
+  $mdThemingProvider.theme('main')
+    .primaryPalette('green')
+    .accentPalette('deep-purple')
+    .warnPalette('deep-orange')
+    .backgroundPalette('grey');
 });

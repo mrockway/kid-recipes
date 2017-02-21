@@ -1,44 +1,44 @@
 <div ng-controller="RecipesCtrl" layout="column" layout-margin ng-cloak>
-	<div ng-controller="ViewRecipesCtrl" layout="column" layout-padding>
-		<md-content layout="column">
-			<div layout="row" layout-align="center center">
-					<h1>What should we eat today?</h1>
-			</div>
-			<div layout="row" layout-align="center center">
-				<md-button class="md-warn md-raised" ng-hide="mealType == '' " ng-click= "mealType = '' ">Clear filter</md-button>
-			</div>
-			<div layout="row" layout-align="space-around center" layout-wrap>
-				<div ng-repeat="meal in meals" flex flex-xs="40" layout="column">
-					<md-button class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
-				</div>
-			</div>
-			<br>
-			<div layout="row" layout-xs="column">
-				<md-input-container class="md-accent" layout="column" flex-sm="50" flex-gt-sm="33">
-					<label>Search Recipes</label>
-					<input type="text" ng-model="keyword">
-				</md-input-container>
-			</div>
-			<br>
-			<div layout="row" layout-xs="column" layout-align="center center">
-				<p class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
-			</div>
-			<div layout="row" layout-wrap>
-				<md-card flex-xs="40" flex="30" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
-					<a href="/recipes/{{recipe._id}}">
-						<md-card-title>
-							<md-card-title-text layout="row" class="capitalize">{{recipe.name | limitTo: 15 }}<span ng-if="recipe.name.length > 15">...</span></md-card-title-text>
-						</md-card-title>
-					</a>
-				</md-card>
-				<md-card flex-xs="40" flex="30">
-					<a href="/newrecipe">
-						<md-card-title>
-							<md-card-title-text>Add Recipe</md-card-title-text>
-						</md-card-title>
-					</a>
-				</md-card>
-			</div>
-		</md-content>
-	</div>
+  <div ng-controller="ViewRecipesCtrl" layout="column" layout-padding>
+    <md-content layout="column">
+      <div layout="row" layout-align="center center">
+          <h1>What should we eat today?</h1>
+      </div>
+      <div layout="row" layout-align="center center">
+        <md-button class="md-warn md-raised" ng-hide="mealType == '' " ng-click= "mealType = '' ">Clear filter</md-button>
+      </div>
+      <div layout="row" layout-align="space-around center" layout-wrap>
+        <div ng-repeat="meal in meals" flex flex-xs="40" layout="column">
+          <md-button class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
+        </div>
+      </div>
+      <br>
+      <div layout="row" layout-xs="column">
+        <md-input-container class="md-accent" layout="column" flex-sm="50" flex-gt-sm="33">
+          <label>Search Recipes</label>
+          <input type="text" ng-model="keyword">
+        </md-input-container>
+      </div>
+      <br>
+      <div layout="row" layout-align="center center">
+        <p flex="50" class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
+        <md-card flex="35">
+          <a href="/newrecipe">
+            <md-card-title>
+              <md-card-title-text>Add Recipe</md-card-title-text>
+            </md-card-title>
+          </a>
+        </md-card>
+      </div>
+      <div layout="row" layout-wrap>
+        <md-card flex-xs="100" flex="45" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
+          <a href="/recipes/{{recipe._id}}">
+            <md-card-title>
+              <md-card-title-text layout="row" class="capitalize">{{recipe.name | limitTo: 30 }}<span ng-if="recipe.name.length > 30">...</span></md-card-title-text>
+            </md-card-title>
+          </a>
+        </md-card>
+      </div>
+    </md-content>
+  </div>
 </div>
