@@ -4,14 +4,16 @@
       <div layout="row" layout-align="center center">
           <h1>What should we eat today?</h1>
       </div>
-      <div layout="row" layout-align="center center">
-        <md-button class="md-warn md-raised" ng-hide="mealType == '' " ng-click= "mealType = '' ">Clear filter</md-button>
-      </div>
       <div layout="row" layout-align="space-around center" layout-wrap>
         <div ng-repeat="meal in meals" flex flex-xs="40" layout="column">
           <md-button class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
         </div>
-        <a flex="45" href="/newrecipe" layout="column"><md-button class="md-primary md-raised">Something New</md-button></a>
+        <div flex flex-xs="40" href="/newrecipe" layout="column">
+          <md-button class="md-primary md-raised">Something New</md-button>
+        </div>
+        <div ng-hide="mealType == ''" layout="column" flex flex-xs="40">
+          <md-button class="md-warn md-raised" ng-hide="mealType == '' " ng-click= "mealType = '' ">Clear filter</md-button>
+        </div>
       </div>
       <br>
       <div layout="row" layout-xs="column">
