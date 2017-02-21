@@ -1,32 +1,32 @@
-<div ng-controller="RecipesCtrl" layout="column" layout-margin ng-cloak>
-  <div ng-controller="ViewRecipesCtrl" layout="column" layout-padding>
+<md-content ng-controller="RecipesCtrl" layout="column" layout-margin ng-cloak>
+  <md-content ng-controller="ViewRecipesCtrl" layout="column" layout-padding ng-cloak>
     <md-content layout="column">
-      <div layout="row" layout-align="center center">
+      <md-content layout="row" layout-align="center center">
         <h1>What should we eat today?</h1>
-      </div>
-      <div layout="row" layout-align="space-around center" layout-wrap>
-        <div ng-repeat="meal in meals" flex flex-xs="40" layout="column">
+      </md-content>
+      <md-content layout="row" layout-align="space-around center" layout-wrap>
+        <md-content ng-repeat="meal in meals" flex flex-xs="40" layout="column">
           <md-button class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
-        </div>
-        <div flex flex-xs="40" href="/newrecipe" layout="column">
+        </md-content>
+        <md-content flex flex-xs="40" href="/newrecipe" layout="column">
           <md-button class="md-primary md-raised">Something New</md-button>
-        </div>
-        <div ng-hide="mealType == ''" layout="column" flex flex-xs="40">
+        </md-content>
+        <md-content ng-hide="mealType == ''" layout="column" flex flex-xs="40">
           <md-button class="md-warn md-raised" ng-hide="mealType == '' " ng-click= "mealType = '' ">Clear filter</md-button>
-        </div>
-      </div>
+        </md-content>
+      </md-content>
       <br>
-      <div layout="row" layout-xs="column">
+      <md-content layout="row" layout-xs="column">
         <md-input-container class="md-accent" layout="column" flex-sm="50" flex-gt-sm="33">
           <label>Search Recipes</label>
           <input type="text" ng-model="keyword">
         </md-input-container>
-      </div>
+      </md-content>
       <br>
-      <div layout="row" layout-align="space-around center">
+      <md-content layout="row" layout-align="space-around center">
         <p class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
-      </div>
-      <div layout="row" layout-wrap>
+      </md-content>
+      <md-content layout="row" layout-wrap>
         <md-card flex-xs="100" flex="45" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
           <a href="/recipes/{{recipe._id}}">
             <md-card-title>
@@ -41,7 +41,7 @@
             </md-card-title>
           </a>
         </md-card>
-      </div>
+      </md-content>
     </md-content>
-  </div>
-</div>
+  </md-content>
+</md-content>
