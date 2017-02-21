@@ -20,7 +20,7 @@ app.factory('Recipe', ['$resource', function($resource) {
 ////////////////////
 
 app.config(function($mdThemingProvider){
-  $mdThemingProvider.theme('main')
+  $mdThemingProvider.theme('default')
     .primaryPalette('green')
     .accentPalette('deep-purple')
     .warnPalette('deep-orange')
