@@ -11,6 +11,7 @@
         <div ng-repeat="meal in meals" flex flex-xs="40" layout="column">
           <md-button class="md-primary md-raised" ng-click="$parent.mealType = meal">{{meal}}</md-button>
         </div>
+        <a href="/newrecipe"><md-button class="md-primary md-raised">Add Recipe</md-button></a>
       </div>
       <br>
       <div layout="row" layout-xs="column">
@@ -20,21 +21,21 @@
         </md-input-container>
       </div>
       <br>
-      <div layout="row" layout-align="center center">
-        <p flex="50" class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
-        <md-card flex="35">
-          <a href="/newrecipe">
-            <md-card-title>
-              <md-card-title-text>Add Recipe</md-card-title-text>
-            </md-card-title>
-          </a>
-        </md-card>
+      <div layout="row" layout-align="space-around center">
+        <p class="capitalize recipe-list-headline">{{ mealType }} Recipes</p>
       </div>
       <div layout="row" layout-wrap>
         <md-card flex-xs="100" flex="45" ng-repeat="recipe in recipes | filter : mealType | filter : keyword">
           <a href="/recipes/{{recipe._id}}">
             <md-card-title>
               <md-card-title-text layout="row" class="capitalize">{{recipe.name | limitTo: 30 }}<span ng-if="recipe.name.length > 30">...</span></md-card-title-text>
+            </md-card-title>
+          </a>
+        </md-card>
+        <md-card flex-xs="100" flex="45">
+          <a href="/newrecipe">
+            <md-card-title>
+              <md-card-title-text>Add Recipe</md-card-title-text>
             </md-card-title>
           </a>
         </md-card>
